@@ -3,13 +3,13 @@ import ApexCharts from "apexcharts";
 // ===== chartThree
 const chart03 = () => {
   const chartThreeOptions = {
-    series: [65, 34, 45, 12],
+    series: [85, 15],
     chart: {
       type: "donut",
       width: 380,
     },
-    colors: ["#3C50E0", "#6577F3", "#8FD0EF", "#0FADCF"],
-    labels: ["Desktop", "Tablet", "Mobile", "Unknown"],
+    colors: ["#83B7FD", "#176B87"],
+    labels: ["4 - 18 Tahun", "Di atas 18 Tahun"],
     legend: {
       show: false,
       position: "bottom",
