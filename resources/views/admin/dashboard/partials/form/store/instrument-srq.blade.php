@@ -11,7 +11,7 @@
                 </div>
                 <span>
                     <button type="submit"
-                        class="w-[100px] h-[35px] rounded-[30px] bg-secondary text-primary hover:bg-primary hover:text-secondary duration-300 ease-linear dark:bg-meta-4 hover:dark:bg-primary hover:dark:text-secondary">Simpan</button>
+                        class="w-[100px] h-[35px] rounded-[30px] bg-secondary text-primary hover:bg-active duration-300 ease-linear dark:bg-meta-4 hover:dark:bg-primary hover:dark:text-secondary">Simpan</button>
                 </span>
             </div>
         </div>
@@ -24,7 +24,7 @@
     <div class="mt-4">
         <div class="flex justify-center">
             <a id="add-srq"
-                class="flex justify-center items-center gap-1 text-sm font-medium w-[200px] h-[40px] cursor-pointer rounded-[30px] bg-secondary text-primary hover:bg-active hover:text-primary duration-300 ease-linear dark:bg-meta-4 hover:dark:bg-primary"><span>Tambah
+                class="flex justify-center items-center gap-1 text-sm font-medium w-[200px] h-[40px] cursor-pointer rounded-[30px] bg-secondary text-primary hover:bg-active hover:text-primary duration-300 ease-linear dark:bg-meta-4 hover:dark:bg-primary hover:dark:text-secondary"><span>Tambah
                     Pertanyaan</span></a>
         </div>
     </div>

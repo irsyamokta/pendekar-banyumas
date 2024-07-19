@@ -26,13 +26,13 @@ document.addEventListener('DOMContentLoaded', () => {
                             </div>
                             <div class="flex gap-2">
                                 <a href="" class="delete-sdq flex justify-center items-center gap-1 text-sm font-medium w-[80px] h-[30px] cursor-pointer rounded-[30px] bg-[#D9D9D9] text-dark duration-300 ease-linear">
-                                    <img src="assets/icon/icon-delete.png" alt="edit" class="w-4 h-4">
+                                    <img src="../assets/icon/icon-delete.png" alt="edit" class="w-4 h-4">
                                     <span>Hapus</span>
                                 </a>
                             </div>
                         </div>
                         <div class="mt-4">
-                            <textarea name="pertanyaan" rows="3" class="w-full overflow-auto dark:bg-transparent"></textarea>
+                            <textarea name="pertanyaan" rows="3" class="w-full overflow-auto dark:bg-transparent" required></textarea>
                         </div>
                     `
             container.appendChild(newCard)
@@ -41,18 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 e.preventDefault();
                 container.removeChild(newCard);
             })
-
-            // newCard.querySelector('.edit-sdq').addEventListener('click', function (e) {
-            //     e.preventDefault();
-            //     const textarea = newCard.querySelector('textarea');
-            //     if (textarea.disabled) {
-            //         textarea.disabled = false;
-            //         this.querySelector('span').textContent = 'Selesai';
-            //     } else {
-            //         textarea.disabled = true;
-            //         this.querySelector('span').textContent = 'Edit';
-            //     }
-            // })
         })
 
         document.querySelectorAll('.delete-sdq').forEach(function (deleteButton) {
@@ -62,21 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 questionDiv.parentNode.removeChild(questionDiv);
             })
         });
-
-        // document.querySelectorAll('.edit-sdq').forEach(function (editButton) {
-        //     editButton.addEventListener('click', function (e) {
-        //         e.preventDefault();
-        //         const questionDiv = this.closest('.sdq-question');
-        //         const textarea = questionDiv.querySelector('textarea');
-        //         if (textarea.disabled) {
-        //             textarea.disabled = false;
-        //             this.querySelector('span').textContent = 'Selesai';
-        //         } else {
-        //             textarea.disabled = true;
-        //             this.querySelector('span').textContent = 'Edit';
-        //         }
-        //     })
-        // })
     }
 
     if (addSrq) {
@@ -92,13 +65,13 @@ document.addEventListener('DOMContentLoaded', () => {
                             </div>
                             <div class="flex gap-2">
                                 <a href="" class="delete-srq flex justify-center items-center gap-1 text-sm font-medium w-[80px] h-[30px] cursor-pointer rounded-[30px] bg-[#D9D9D9] text-dark duration-300 ease-linear">
-                                    <img src="assets/icon/icon-delete.png" alt="edit" class="w-4 h-4">
+                                    <img src="../assets/icon/icon-delete.png" alt="edit" class="w-4 h-4">
                                     <span>Hapus</span>
                                 </a>
                             </div>
                         </div>
                         <div class="mt-4">
-                            <textarea name="pertanyaan" rows="3" class="w-full overflow-auto dark:bg-transparent"></textarea>
+                            <textarea name="pertanyaan" rows="3" class="w-full overflow-auto dark:bg-transparent" required></textarea>
                         </div>
                     `
             container.appendChild(newCard)

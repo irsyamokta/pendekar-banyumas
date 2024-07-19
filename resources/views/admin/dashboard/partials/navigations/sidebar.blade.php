@@ -20,7 +20,7 @@
 
     <div class="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
         <!-- Sidebar Menu -->
-        <nav class="mt-5 px-4 py-4 lg:mt-9 lg:px-6" x-data="{ selected: $persist('Dashboard') }">
+        <nav class="mt-5 px-4 py-4 lg:mt-9 lg:px-6" x-data="{ selected: ('Dashboard') }">
             <!-- Menu Group -->
             <div>
                 <h3 class="mb-4 ml-4 text-sm font-medium text-bodydark1">MENU</h3>
@@ -30,7 +30,7 @@
                     <li>
                         <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-active dark:hover:bg-meta-4"
                             href="{{ route('dashboard') }}"
-                            :class="page.includes('dashboard') ? 'bg-active dark:bg-meta-4' : ''" >
+                            :class="page.includes('dashboard') ? 'bg-active dark:bg-meta-4' : ''">
                             <svg class="fill-current" width="18" height="18" viewBox="0 0 18 18" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -55,8 +55,10 @@
                     <li>
                         <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-active dark:hover:bg-meta-4"
                             href="#" @click.prevent="selected = (selected === 'Forms' ? '':'Forms')"
-                            :class="{ 'bg-active dark:bg-meta-4': (selected === 'Forms') || (page === 'formElements' ||
-                                    page === 'formLayout') }">
+                            :class="{
+                                'bg-active dark:bg-meta-4': (selected === 'Forms') || (page === 'formElements' ||
+                                    page === 'formLayout')
+                            }">
                             <svg class="fill-current" width="18" height="18" viewBox="0 0 18 18" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -93,11 +95,13 @@
                             <ul class="mb-5.5 mt-4 flex flex-col gap-2.5 pl-6">
                                 <li>
                                     <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white"
-                                        href="{{ route('sdq') }}" :class="page.includes('sdq') ? '!text-white' : ''">SDQ</a>
+                                        href="{{ route('sdq') }}"
+                                        :class="page.includes('sdq') ? '!text-white' : ''">SDQ</a>
                                 </li>
                                 <li>
                                     <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white"
-                                        href="{{ route('srq') }}" :class="page.includes('srq') ? '!text-white' : ''">SRQ</a>
+                                        href="{{ route('srq') }}"
+                                        :class="page.includes('srq') ? '!text-white' : ''">SRQ</a>
                                 </li>
                             </ul>
                         </div>
@@ -133,9 +137,10 @@
                     </li>
                     <!-- Menu Item Chart -->
                     <li>
-                        <button
-                            class="group relative flex justify-center mt-10 items-center w-[100px] gap-2.5 rounded-[30px] py-2 px-4 font-medium bg-white text-secondary duration-300 ease-in-out hover:text-white hover:bg-active dark:hover:bg-meta-4"
-                            @click="logout">Logout</button>
+                        <a href="{{ route('logout') }}"
+                            class="group relative flex justify-center mt-10 items-center w-[100px] gap-2.5 rounded-[30px] py-2 px-4 font-medium bg-white text-secondary duration-300 ease-in-out hover:text-white hover:bg-active dark:hover:bg-meta-4">
+                            <button @click="logout">Logout</button>
+                        </a>
                     </li>
                 </ul>
             </div>
