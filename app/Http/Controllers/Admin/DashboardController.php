@@ -16,26 +16,26 @@ class DashboardController extends Controller
 
         if($pin->isEmpty()){
             $pin = [null];
-            return view('admin.dashboard.dashboard', compact('pin'));
+            return view('admin.dashboard.menu.dashboard', compact('pin'));
         }
 
-        return view('admin.dashboard.dashboard', compact('pin'));
+        return view('admin.dashboard.menu.dashboard', compact('pin'));
     }
 
     public function sdq()
     {
         $data = InstrumenSDQ::all();
-        return view('admin.dashboard.sdq', compact('data'));
+        return view('admin.dashboard.menu.sdq', compact('data'));
     }
 
     public function srq()
     {
         $data = InstrumenSRQ::all();
-        return view('admin.dashboard.srq', compact('data'));
+        return view('admin.dashboard.menu.srq', compact('data'));
     }
 
     public function report(){
 
-        return view('admin.dashboard.report');
+        return view('admin.dashboard.menu.report');
     }
 }

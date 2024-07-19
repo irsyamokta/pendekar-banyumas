@@ -14,7 +14,7 @@ class InstrumenController extends Controller
         if(!$data){
             abort(404);
         }
-        return view('admin.dashboard.edit-sdq', compact('data'));
+        return view('admin.dashboard.menu.edit-sdq', compact('data'));
     }
 
     public function storeSDQ(Request $request){
@@ -51,7 +51,7 @@ class InstrumenController extends Controller
         if(!$data){
             abort(404);
         }
-        return view('admin.dashboard.edit-srq', compact('data'));
+        return view('admin.dashboard.menu.edit-srq', compact('data'));
     }
 
     public function storeSRQ(Request $request){
