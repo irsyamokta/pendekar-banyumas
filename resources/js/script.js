@@ -1,14 +1,43 @@
-const pin = document.getElementById("pin")
-const inputPin = document.getElementById("pin-value")
-const generate = document.getElementById("generate")
+// const pin = document.getElementById("pin")
+// const inputPin = document.getElementById("pin-value")
+// const generate = document.getElementById("generate")
 
-window.addEventListener('DOMContentLoaded', () => {
-    generate.addEventListener('click', () => {
-        pin.value = Math.floor(100000 + Math.random() * 900000).toString().padStart(6, '0')
-        pin.innerHTML = pin.value
-        inputPin.value = pin.value
-    })
+document.addEventListener('DOMContentLoaded', () => {
+    const generate = document.getElementById('generate');
+            const pin = document.getElementById('pin');
+            const inputPin = document.getElementById('input-pin');
+
+            generate.addEventListener('click', () => {
+                const newPin = Math.floor(100000 + Math.random() * 900000).toString().padStart(6, '0');
+                localStorage.setItem('generatedPin', newPin);
+                location.reload();
+            });
+
+            if (localStorage.getItem('generatedPin')) {
+                const savedPin = localStorage.getItem('generatedPin');
+                inputPin.value = savedPin;
+            }
 })
+
+document.querySelectorAll('.delete-confirm').forEach((button) => {
+    button.addEventListener('click', function (e) {
+        e.preventDefault(); 
+        const url = this.href;
+        Swal.fire({
+            title: 'Apakah kamu yakin?',
+            text: "Kamu tidak akan bisa mengembalikan ini!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#176B87',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, hapus!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = url;
+            }
+        });
+    });
+});
 
 document.addEventListener('DOMContentLoaded', () => {
     const addSdq = document.getElementById("add-sdq")
@@ -49,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const questionDiv = this.closest('.sdq-question');
                 questionDiv.parentNode.removeChild(questionDiv);
             })
-        });
+        })
     }
 
     if (addSrq) {
@@ -91,5 +120,3 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 })
-
-

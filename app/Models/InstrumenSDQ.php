@@ -14,6 +14,6 @@ class InstrumenSDQ extends Model
     protected $primaryKey = 'id_sdq';
 
     protected $fillable = [
-        'pertanyaan'
+        'pertanyaan', 'urutan'
     ];
 }

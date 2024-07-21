@@ -30,9 +30,23 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'nama_lengkap' => ['required', 'string', 'max:255'],
+            'nama_lengkap' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z\s]+$/'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password' => ['required', 'confirmed', 'min:8', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/'],
+            'password_confirmation' => ['same:password'],
+        ], [
+            'nama_lengkap.regex' => 'Nama hanya boleh mengandung huruf dan spasi!',
+            'nama_lengkap.required' => 'Nama harus diisi!',
+            'nama_lengkap.max' => 'Nama tidak boleh lebih dari 255 karakter!',
+            'email.required' => 'Email harus diisi!',
+            'email.email' => 'Format email tidak valid.',
+            'email.max' => 'Tidak boleh lebih dari 255 karakter!',
+            'email.unique' => 'Email sudah digunakan!',
+            'password.required' => 'Password harus diisi!',
+            'password.confirmed' => 'Password konfirmasi tidak cocok!',
+            'password.min' => 'Password minimal 8 karakter!',
+            'password.regex' => 'Password Harus mengandung huruf kapital, angka, dan simbol!',
+            'password_confirmation' => 'Password konfirmasi tidak cocok!',
         ]);
 
         $user = User::create([
@@ -43,8 +57,6 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        Auth::login($user);
-
-        return redirect(route('dashboard', absolute: false));
+        return redirect(route('login', absolute: false));
     }
 }

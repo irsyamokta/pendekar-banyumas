@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('instrumen_srq', function (Blueprint $table) {
             $table->bigIncrements('id_srq');
+            $table->integer('urutan')->nullable();
             $table->string('pertanyaan');
             $table->timestamps();
-
             $table->primary('id_srq');
         });
     }

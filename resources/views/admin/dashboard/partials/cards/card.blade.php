@@ -20,16 +20,33 @@
     <!-- Card Item Start -->
     <div
         class="rounded-sm border border-stroke bg-white px-7.5 py-6 shadow-default dark:border-strokedark dark:bg-boxdark">
-        <div class="flex h-11.5 w-11.5 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4">
-            <img src="{{ asset('assets/icon/icon-pin.png') }}" alt="generate pin">
+        <div class="flex justify-between">
+            <div class="flex h-11.5 w-11.5 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4">
+                <img src="{{ asset('assets/icon/icon-pin.png') }}" alt="generate pin">
+            </div>
+            <p class="flex items-center text-sm text-gray-500 dark:text-gray-400"><button
+                    data-popover-target="popover-description" data-popover-placement="bottom-end" type="button"><svg
+                        class="w-4 h-4 ms-2 text-gray-400 hover:text-gray-500" aria-hidden="true" fill="currentColor"
+                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
+                            clip-rule="evenodd"></path>
+                    </svg><span class="sr-only">Show information</span></button></p>
+            <div data-popover id="popover-description" role="tooltip"
+                class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border rounded-lg shadow-sm opacity-0 w-72 dark:bg-meta-4 dark:text-gray-400">
+                <div class="p-3 space-y-2">
+                    <h3 class="font-semibold text-gray-900 dark:text-white">Penting</h3>
+                    <p>Lakukan generate ulang jika screening telah selesai, untuk menghindari penyalahgunaan</p>
+                </div>
+                <div data-popper-arrow></div>
+            </div>
         </div>
-
         <div>
             <form action="{{ route('generatePin') }}" method="POST" enctype="multipart/form-data"
                 class="mt-4 flex items-end justify-between">
                 @csrf
                 <div>
-                    <input id="pin-value" type="text" name="pin" value="" class="hidden">
+                    <input id="input-pin" type="text" name="pin" value="" class="hidden">
                     @foreach ($pin as $item)
                         <h4 id="pin" class="text-title-md font-bold text-black dark:text-white">
                             @if ($item == null)
@@ -41,10 +58,9 @@
                     @endforeach
                     <span class="text-sm font-medium">PIN Sesi</span>
                 </div>
-
                 <span class="flex items-center gap-1 text-sm font-medium text-primary">
                     <button id="generate"
-                        class="w-[100px] h-[35px] rounded-[30px] bg-secondary hover:bg-primary hover:text-secondary duration-300 ease-linear dark:bg-meta-4 hover:dark:bg-primary hover:dark:text-secondary">Generate</button>
+                        class="w-[100px] h-[35px] rounded-[30px] bg-secondary text-primary hover:bg-active hover:text-primary duration-300 ease-linear dark:bg-meta-4 hover:dark:bg-primary hover:dark:text-secondary">Generate</button>
                 </span>
             </form>
         </div>

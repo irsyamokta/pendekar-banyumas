@@ -13,7 +13,7 @@
                     <span>Edit</span>
                 </a>
                 <a href="{{ route('deleteSRQ', $item->id_srq) }}"
-                    class="flex justify-center items-center gap-1 text-sm font-medium w-[80px] h-[30px] cursor-pointer rounded-[30px] bg-[#D9D9D9] text-dark duration-300 ease-linear">
+                    class="delete-confirm flex justify-center items-center gap-1 text-sm font-medium w-[80px] h-[30px] cursor-pointer rounded-[30px] bg-[#D9D9D9] text-dark duration-300 ease-linear">
                     <img src="{{ asset('assets/icon/icon-delete.png') }}" alt="edit" class="w-4 h-4">
                     <span>Hapus</span>
                 </a>

@@ -3,7 +3,7 @@
     {{-- Heading --}}
     <div class="mt-4 flex items-center justify-between">
         <div>
-            <span class="text-lg font-regular text-dark dark:text-primary">Pertanyaan {{ $data->id_sdq }} </span>
+            <span class="text-lg font-regular text-dark dark:text-primary">Pertanyaan {{ $data->urutan }} </span>
         </div>
         <div class="flex gap-2">
             <button>

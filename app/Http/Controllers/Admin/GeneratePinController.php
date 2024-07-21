@@ -20,7 +20,7 @@ class GeneratePinController extends Controller
             $generatePin->pin = $request->pin;
             $generatePin->save();
     
-            return redirect()->route('dashboard')->with('success', 'Generate Pin Success');
+            return redirect()->route('dashboard')->with('Success', 'Berhasil membuat PIN baru');
 
         }catch(Exception $e){
             return redirect()->route('dashboard')->with('error', $e->getMessage());

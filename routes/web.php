@@ -5,10 +5,6 @@ use App\Http\Controllers\Admin\GeneratePinController;
 use App\Http\Controllers\Admin\InstrumenController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/register', function () {
-    return view('admin.auth.register');
-});
-
 Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::post('/', [GeneratePinController::class, 'store'])->name('generatePin');

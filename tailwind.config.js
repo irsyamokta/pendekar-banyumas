@@ -6,9 +6,6 @@ export default {
         "./resources/**/*.js",
         "./resources/**/*.vue",
         "./node_modules/flowbite/**/*.js",
-        // './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
-        // './storage/framework/views/*.php',
-        // './resources/views/**/*.blade.php',
     ],
     darkMode: 'class',
     theme: {
