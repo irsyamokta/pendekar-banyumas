@@ -1,0 +1,17 @@
+{
+    "name": "Admin Pendekar Banyumas",
+    "short_name": "APB",
+    "start_url": "/dashboard",
+    "background_color": "#6777ef",
+    "description": "Admin Pendekar Banyumas PWA",
+    "display": "fullscreen",
+    "theme_color": "#6777ef",
+    "icons": [
+        {
+            "src": "fav-icon.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}
