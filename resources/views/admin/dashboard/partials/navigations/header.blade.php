@@ -28,8 +28,8 @@
                 </span>
             </button>
             <!-- Hamburger Toggle BTN -->
-            <a class="block flex-shrink-0 lg:hidden" href="index.html">
-                <img src="./images/logo/logo-icon.svg" alt="Logo" />
+            <a class="block flex-shrink-0 lg:hidden" href="{{ route('dashboard') }}">
+                <img src="{{ asset('assets/logo/logo-color.png') }}" alt="Logo" class="w-[150px]" :class="darkMode ? 'convert' : ''"/>
             </a>
         </div>
         <div class="flex items-center gap-3 2xsm:gap-7">

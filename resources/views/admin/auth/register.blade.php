@@ -16,10 +16,10 @@
             <p class="text-primary text-center text-sm md:text-lg">Silakan masuk dengan akun Anda. Jika Anda lupa
                 password silakan hubungi staff bagian IT</p>
         </div>
-        <div class="w-full lg:w-1/2 flex flex-col justify-center items-center">
+        <div class="w-full lg:w-1/2 flex flex-col justify-center items-center py-10 gap-10">
             <form action="{{ route('register') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <div class="flex flex-col justify-center items-center px-16 py-16">
+                <div class="flex flex-col justify-center items-center">
                     <div class="mb-5">
                         <label for="nama_lengkap" class="text-sm">Nama Lengkap</label>
                         <br>

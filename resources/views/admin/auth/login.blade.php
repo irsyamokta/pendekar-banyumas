@@ -12,14 +12,18 @@
 <body class="bg-gradient-to-t from-soft to-white to-16%">
     <section class="md:h-[100vh] flex flex-col md:flex lg:flex-row">
         <div class="w-full lg:w-1/2 flex flex-col justify-center items-center px-16 py-16 bg-secondary">
-            <img class="sm:w-[60%] lg:w-[80%]" src="{{ asset('assets/img/img-login.png') }}" alt="img-login">
+            <a class="flex justify-center" href="https://storyset.com/online" target="_blank">
+                <img class="sm:w-[60%] lg:w-[80%]" src="{{ asset('assets/img/img-login.png') }}" alt="Online illustrations by Storyset" >
+            </a>
             <p class="text-primary text-center text-sm md:text-lg">Silakan masuk dengan akun Anda. Jika Anda lupa
                 password silakan hubungi staff bagian IT</p>
         </div>
-        <div class="w-full lg:w-1/2 flex flex-col justify-center items-center">
+        <div class="w-full lg:w-1/2 flex flex-col justify-center items-center py-10 gap-10">
+            <img src="{{ asset('assets/logo/logo-color.png') }}" alt="logo" class="w-[250px]">
+            @include('admin.dashboard.partials.toast.register-toast')
             <form action="{{ route('login') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <div class="flex flex-col justify-center items-center px-16 py-16">
+                <div class="flex flex-col justify-center items-center">
                     <div class="mb-5">
                         <label for="email" class="text-sm">Email</label>
                         <br>
@@ -36,8 +40,10 @@
                     <button class="w-40 h-10 mt-5 rounded-[30px] bg-secondary text-primary hover:bg-active hover:text-primary duration-300 ease-linear dark:bg-meta-4 hover:dark:bg-primary">Masuk</button>
                 </div>
             </form>
+            <p class="mt-5 text-xs text-secondary font-regular">Copyright © Pendekar Banyumas {{ date('Y') }}. All Right Reserves</p>
         </div>
     </section>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
 </body>
 
 </html>
