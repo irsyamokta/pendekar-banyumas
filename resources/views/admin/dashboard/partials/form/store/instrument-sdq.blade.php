@@ -6,12 +6,12 @@
             class="rounded-sm border border-stroke bg-white px-7.5 py-4 shadow-default dark:border-strokedark dark:bg-boxdark">
             <div class="mt-4 flex items-center justify-between">
                 <div>
-                    <span class="text-lg font-regular text-dark dark:text-primary">Instrumen Strengths and Difficulties
+                    <span class="text-sm md:text-lg font-regular text-dark dark:text-primary">Instrumen Strengths and Difficulties
                         Questionnaire (SDQ)</span>
                 </div>
                 <span>
-                    <button
-                        class="w-[100px] h-[35px] rounded-[30px] bg-secondary text-primary hover:bg-active duration-300 ease-linear dark:bg-meta-4 hover:dark:bg-primary hover:dark:text-secondary">Simpan</button>
+                    <button type="submit"
+                        class="w-[80px] h-[30px] md:w-[100px] md:h-[35px] text-sm md:text-lg rounded-[30px] bg-secondary text-primary hover:bg-active duration-300 ease-linear dark:bg-meta-4 hover:dark:bg-primary hover:dark:text-secondary">Simpan</button>
                 </span>
             </div>
         </div>
@@ -24,7 +24,7 @@
     <div class="mt-4">
         <div class="flex justify-center">
             <a id="add-sdq"
-                class="flex justify-center items-center gap-1 text-sm font-medium w-[200px] h-[40px] cursor-pointer rounded-[30px] bg-secondary text-primary hover:bg-active hover:text-primary duration-300 ease-linear dark:bg-meta-4 hover:dark:bg-primary hover:dark:text-secondary"><span>Tambah
+                class="flex justify-center items-center gap-1 text-sm  w-[180px] h-[35px] md:w-[200px] md:h-[40px] cursor-pointer rounded-[30px] bg-secondary text-primary hover:bg-active hover:text-primary duration-300 ease-linear dark:bg-meta-4 hover:dark:bg-primary hover:dark:text-secondary"><span>Tambah
                     Pertanyaan</span></a>
         </div>
     </div>

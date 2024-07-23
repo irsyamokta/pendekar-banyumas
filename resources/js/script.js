@@ -1,7 +1,3 @@
-// const pin = document.getElementById("pin")
-// const inputPin = document.getElementById("pin-value")
-// const generate = document.getElementById("generate")
-
 document.addEventListener('DOMContentLoaded', () => {
     const generate = document.getElementById('generate');
             const pin = document.getElementById('pin');
@@ -54,8 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <span class="text-lg font-regular text-dark dark:text-primary">Pertanyaan ${newQuestionCount}</span>
                             </div>
                             <div class="flex gap-2">
-                                <a href="" class="delete-sdq flex justify-center items-center gap-1 text-sm font-medium w-[80px] h-[30px] cursor-pointer rounded-[30px] bg-[#D9D9D9] text-dark duration-300 ease-linear">
-                                    <img src="../assets/icon/icon-delete.png" alt="edit" class="w-4 h-4">
+                                <a href="" class="delete-sdq flex justify-center items-center gap-1 text-sm font-medium w-[70px] h-[25px] md:w-[80px] md:h-[30px] cursor-pointer rounded-[30px] bg-[#D9D9D9] text-dark duration-300 ease-linear">
+                                    <img src="../assets/icon/icon-delete.png" alt="edit" class="w-3 h-3 md:w-4 md:h-4">
                                     <span>Hapus</span>
                                 </a>
                             </div>
@@ -93,8 +89,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <span class="text-lg font-regular text-dark dark:text-primary">Pertanyaan ${newQuestionCount}</span>
                             </div>
                             <div class="flex gap-2">
-                                <a href="" class="delete-srq flex justify-center items-center gap-1 text-sm font-medium w-[80px] h-[30px] cursor-pointer rounded-[30px] bg-[#D9D9D9] text-dark duration-300 ease-linear">
-                                    <img src="../assets/icon/icon-delete.png" alt="edit" class="w-4 h-4">
+                                <a href="" class="delete-srq flex justify-center items-center gap-1 text-sm font-medium w-[70px] h-[25px] md:w-[80px] md:h-[30px] cursor-pointer rounded-[30px] bg-[#D9D9D9] text-dark duration-300 ease-linear">
+                                    <img src="../assets/icon/icon-delete.png" alt="edit" class="w-3 h-3 md:w-4 md:h-4">
                                     <span>Hapus</span>
                                 </a>
                             </div>

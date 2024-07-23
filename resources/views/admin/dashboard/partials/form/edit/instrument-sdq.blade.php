@@ -6,7 +6,7 @@
             class="rounded-sm border border-stroke bg-white px-7.5 py-4 shadow-default dark:border-strokedark dark:bg-boxdark">
             <div class="mt-4 flex items-center justify-between">
                 <div>
-                    <span class="text-lg font-regular text-dark dark:text-primary">Edit Pertanyaan</span>
+                    <span class="text-md md:text-lg font-regular text-dark dark:text-primary">Edit Pertanyaan</span>
                 </div>
             </div>
         </div>
