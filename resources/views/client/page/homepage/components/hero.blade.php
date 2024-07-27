@@ -1,4 +1,4 @@
-<section id="beranda" class="h-[100vh] bg-gradient-to-t from-soft to-white">
+<section id="homepage" class="h-[100vh] bg-gradient-to-t from-soft to-white">
     @include('client.partials.navbar')
     <div class="flex justify-center items-center px-4 mx-12 max-w-screen-xl">
         <div class="flex flex-col gap-2">

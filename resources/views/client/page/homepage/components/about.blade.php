@@ -1,4 +1,4 @@
-<section class="flex justify-center items-center h-[100vh]">
+<section id="about" class="flex justify-center items-center h-[100vh]">
     <div class="flex justify-center items-center px-4 mx-12 max-w-screen-xl">
         <div>
             <div>
