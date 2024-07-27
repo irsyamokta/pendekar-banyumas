@@ -24,7 +24,7 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function () 
     Route::get('/report', [DashboardController::class, 'report'])->name('report');
 });
 
-    Route::get('/home', function(){
+    Route::get('/', function(){
         return view('client.page.homepage.homepage');
     });
 require __DIR__.'/auth.php';

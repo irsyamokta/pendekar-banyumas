@@ -33,6 +33,7 @@ export default {
                 accent: '#1EC3E7',
                 active: '#518CA0',
                 soft: '#B4D4FF',
+                hard: '#176B87',
                 current: 'currentColor',
                 transparent: 'transparent',
                 white: '#FFFFFF',
