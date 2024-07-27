@@ -7,15 +7,15 @@
         </div>
         <div class="flex justify-center items-center gap-6 mt-5">
             <div class="mt-5 flex flex-col justify-center items-center gap-5 w-2/4 h-70 bg-gradient-to-t from-hard to-accent p-5 rounded-[30px]">
-                <img src="{{ asset('assets/icon/icon-pin.png') }}" alt="icon" class="w-24">
+                <img src="{{ asset('assets/icon/icon-test.png') }}" alt="icon" class="w-24">
                 <p class="text-white text-xs text-center">Lakukan tes secara jujur dan objektif agar hasil yang diperoleh mencerminkan kondisi sebenarnya, sehingga dapat dilakukan penanganan yang tepat.</p>
             </div>
             <div class="mt-5 flex flex-col justify-center items-center gap-5 w-2/4 h-70 bg-gradient-to-t from-hard to-accent p-5 rounded-[30px]">
-                <img src="{{ asset('assets/icon/icon-pin.png') }}" alt="icon" class="w-24">
+                <img src="{{ asset('assets/icon/icon-result.png') }}" alt="icon" class="w-24">
                 <p class="text-white text-xs text-center">Lakukan tes secara jujur dan objektif agar hasil yang diperoleh mencerminkan kondisi sebenarnya, sehingga dapat dilakukan penanganan yang tepat.</p>
             </div>
             <div class="mt-5 flex flex-col justify-center items-center gap-5 w-2/4 h-70 bg-gradient-to-t from-hard to-accent p-5 rounded-[30px]">
-                <img src="{{ asset('assets/icon/icon-pin.png') }}" alt="icon" class="w-24">
+                <img src="{{ asset('assets/icon/icon-doctor.png') }}" alt="icon" class="w-24">
                 <p class="text-white text-xs text-center">Lakukan tes secara jujur dan objektif agar hasil yang diperoleh mencerminkan kondisi sebenarnya, sehingga dapat dilakukan penanganan yang tepat.</p>
             </div>
         </div>
