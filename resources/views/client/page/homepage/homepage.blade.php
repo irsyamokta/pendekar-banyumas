@@ -7,11 +7,6 @@
     <title>Pendekar Banyumas</title>
     <link href="../public/css/style.css" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
-    </style>
 </head>
 
 <body class="bg-gray-50">
