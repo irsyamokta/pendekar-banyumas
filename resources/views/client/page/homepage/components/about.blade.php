@@ -1,26 +1,26 @@
 <section id="about" class="flex justify-center items-center h-[100vh]">
-    <div class="flex flex-col lg:flex-row justify-center items-center px-4 md:mx-12 max-w-screen-xl ">
+    <div class="flex flex-col lg:flex-row justify-center items-center px-4 md:mx-12 lg:w-full ">
         <div>
             <div>
-                <p class="font-semibold delay-[300ms] duration-[600ms] taos:scale-[0.6] taos:opacity-0 [animation-iteration-count:infinite]" data-taos-offset="0">Tentang</p>
-                <h1 class="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent to-secondary mt-1 delay-[300ms] duration-[600ms] taos:scale-[0.6] taos:opacity-0 [animation-iteration-count:infinite]" data-taos-offset="0">Kesehatan Mental</h1>
-                <p class="mt-5 text-xs md:text-sm delay-[300ms] duration-[600ms] taos:scale-[0.6] taos:opacity-0 [animation-iteration-count:infinite]" data-taos-offset="0">Kesehatan jiwa atau sebutan lainnya kesehatan mental adalah kesehatan yang berkaitan dengan kondisi emosi, kejiwaan, dan psikis seseorang. 
+                <p class="font-semibold lg:text-2xl delay-[300ms] duration-[600ms] taos:scale-[0.6] taos:opacity-0 [animation-iteration-count:infinite]" data-taos-offset="0">Tentang</p>
+                <h1 class="text-2xl md:text-3xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent to-secondary mt-1 delay-[300ms] duration-[600ms] taos:scale-[0.6] taos:opacity-0 [animation-iteration-count:infinite]" data-taos-offset="0">Kesehatan Mental</h1>
+                <p class="mt-5 lg:mt-10 text-xs md:text-sm lg:text-lg delay-[300ms] duration-[600ms] taos:scale-[0.6] taos:opacity-0 [animation-iteration-count:infinite]" data-taos-offset="0">Kesehatan jiwa atau sebutan lainnya kesehatan mental adalah kesehatan yang berkaitan dengan kondisi emosi, kejiwaan, dan psikis seseorang. 
                     Perlu Anda ketahui bahwa peristiwa dalam hidup yang berdampak besar pada kepribadian dan perilaku seseorang bisa berpengaruh pada kesehatan mentalnya.</p>
-                <p class="mt-5 text-xs md:text-sm delay-[300ms] duration-[600ms] taos:scale-[0.6] taos:opacity-0 [animation-iteration-count:infinite]" data-taos-offset="0">Berikut ini dua tes yang bisa digunakan untuk menilai kesehatan mental.</p>
-                <div class="flex flex-col md:flex-row justify-center items-center gap-3 mt-5">
+                <p class="mt-5 lg:mt-7 text-xs md:text-sm lg:text-lg delay-[300ms] duration-[600ms] taos:scale-[0.6] taos:opacity-0 [animation-iteration-count:infinite]" data-taos-offset="0">Berikut ini dua tes yang bisa digunakan untuk menilai kesehatan mental.</p>
+                <div class="flex flex-col md:flex-row justify-center items-center gap-3 mt-5 lg:mt-8">
                     <div class="flex flex-col">
                         <div class="flex items-center gap-3 delay-[300ms] duration-[600ms] taos:scale-[0.6] taos:opacity-0 [animation-iteration-count:infinite]" data-taos-offset="0">
-                            <img src="{{ asset('assets/icon/icon-sdq.png') }}" alt="test" class="w-10 md:w-16">
-                            <p class="font-semibold text-xs md:text-sm">Strengths and Difficulties Questionnaire (SDQ)</p>
+                            <img src="{{ asset('assets/icon/icon-sdq.png') }}" alt="test" class="w-10 md:w-16 lg:w-20">
+                            <p class="font-semibold text-xs md:text-sm lg:text-lg">Strengths and Difficulties Questionnaire (SDQ)</p>
                         </div>
-                        <p class="mt-5 text-xs md:text-sm delay-[300ms] duration-[600ms] taos:scale-[0.6] taos:opacity-0 [animation-iteration-count:infinite]" data-taos-offset="0">SDQ adalah kuesioner untuk deteksi dini masalah perilaku dan emosi pada anak dan remaja berusia 4 – 18 tahun.</p>
+                        <p class="mt-5 text-xs md:text-sm lg:text-lg delay-[300ms] duration-[600ms] taos:scale-[0.6] taos:opacity-0 [animation-iteration-count:infinite]" data-taos-offset="0">SDQ adalah kuesioner untuk deteksi dini masalah perilaku dan emosi pada anak dan remaja berusia 4 – 18 tahun.</p>
                     </div>
                     <div class="flex flex-col">
                         <div class="flex items-center gap-3 delay-[300ms] duration-[600ms] taos:scale-[0.6] taos:opacity-0 [animation-iteration-count:infinite]" data-taos-offset="0">
-                            <img src="{{ asset('assets/icon/icon-srq.png') }}" alt="test" class="w-10 md:w-16">
-                            <p class="font-semibold text-xs md:text-sm md:pr-20">Self-Reporting Questionnaire (SRQ)</p>
+                            <img src="{{ asset('assets/icon/icon-srq.png') }}" alt="test" class="w-10 md:w-16 lg:w-20">
+                            <p class="font-semibold text-xs md:text-sm  md:pr-20 lg:text-lg lg:pr-36">Self-Reporting Questionnaire (SRQ)</p>
                         </div>
-                        <p class="mt-5 text-xs md:text-sm delay-[300ms] duration-[600ms] taos:scale-[0.6] taos:opacity-0 [animation-iteration-count:infinite]" data-taos-offset="0">SRQ adalah kuesioner yang dikembangkan oleh World Health Organization (WHO) untuk skrining gangguan psikiatri usia di atas 18 tahun.</p>
+                        <p class="mt-5 text-xs md:text-sm lg:text-lg delay-[300ms] duration-[600ms] taos:scale-[0.6] taos:opacity-0 [animation-iteration-count:infinite]" data-taos-offset="0">SRQ adalah kuesioner yang dikembangkan oleh World Health Organization (WHO) untuk skrining gangguan psikiatri usia di atas 18 tahun.</p>
                     </div>
                 </div>
             </div>
