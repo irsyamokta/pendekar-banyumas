@@ -1,5 +1,5 @@
-<nav class="bg-transparent border-gray-200 dark:bg-gray-900 md:mx-12">
-    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+<nav class="bg-transparent border-gray-200 dark:bg-gray-900 absolute z-9999 w-full">
+    <div class=" flex flex-wrap items-center justify-between mx-auto md:mx-12 p-4">
         <a href="" class="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="{{ asset('assets/logo/logo-color.png') }}" class="h-12" alt="Logo Pendekar" />
         </a>

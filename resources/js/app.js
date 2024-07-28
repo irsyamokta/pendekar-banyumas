@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function toggleButtonVisibility() {
         const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
-        if (window.scrollY > heroBottom) {
+        if (window.scrollY >= heroBottom) {
             scrollButton.style.display = 'block';
         } else {
             scrollButton.style.display = 'none';
