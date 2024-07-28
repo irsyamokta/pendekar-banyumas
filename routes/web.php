@@ -27,5 +27,13 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function () 
     Route::get('/', function(){
         return view('client.page.homepage.homepage');
     });
+
+    Route::get('/screening-test', function(){
+        return view('client.page.screening.screening');
+    });
+
+    Route::get('/mandiri-test', function(){
+        return view('client.page.mandiri.mandiri');
+    });
 require __DIR__.'/auth.php';
 
