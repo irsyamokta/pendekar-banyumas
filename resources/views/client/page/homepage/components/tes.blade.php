@@ -1,12 +1,12 @@
 <section id="test" class="flex justify-center items-center h-[100vh]">
     <div class="flex flex-col justify-center items-center px-4 md:mx-12 max-w-screen-xl">
         <div class="flex flex-col items-center gap-2 text-center">
-            <p class="font-semibold">Mulai Tes</p>
-            <h1 class="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent to-secondary">Pendeteksian Kesehatan Mental Sekarang</h1>
+            <p class="font-semibold delay-[400ms] duration-[600ms] taos:scale-[0.6] taos:opacity-0 [animation-iteration-count:infinite]" data-taos-offset="100">Mulai Tes</p>
+            <h1 class="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent to-secondary delay-[500ms] duration-[600ms] taos:scale-[0.6] taos:opacity-0 [animation-iteration-count:infinite]" data-taos-offset="100">Pendeteksian Kesehatan Mental Sekarang</h1>
         </div>
         <div class="mt-6">
             <div class="flex flex-col lg:flex-row justify-center items-center gap-5 mt-5">
-                <div class="relative flex flex-col justify-between gap-5 lg:w-2/4 md:h-56 bg-gradient-to-t from-soft to-white p-5 rounded-[30px] overflow-hidden shadow-md">
+                <div class="relative flex flex-col justify-between gap-5 lg:w-2/4 md:h-56 bg-gradient-to-t from-soft to-white p-5 rounded-[30px] overflow-hidden shadow-md delay-[600ms] duration-[600ms] taos:scale-[0.6] taos:opacity-0 [animation-iteration-count:infinite]" data-taos-offset="100">
                     <div class="absolute w-10 h-70 bg-accent -left-5 -top-2">
                     </div>
                     <div class="flex flex-col justify-center mt-3 md:mt-5 items-center gap-5">
@@ -16,7 +16,7 @@
                     </div>
                     <img src="{{ asset('assets/icon/elips.png') }}" alt="" class="w-30 absolute -right-1 -bottom-2">
                 </div>
-                <div class="relative flex flex-col justify-between gap-5 lg:w-2/4 md:h-56 bg-gradient-to-t from-soft to-white p-5 rounded-[30px] overflow-hidden shadow-md">
+                <div class="relative flex flex-col justify-between gap-5 lg:w-2/4 md:h-56 bg-gradient-to-t from-soft to-white p-5 rounded-[30px] overflow-hidden shadow-md delay-[700ms] duration-[600ms] taos:scale-[0.6] taos:opacity-0 [animation-iteration-count:infinite]" data-taos-offset="100">
                     <div class="absolute w-10 h-70 bg-hard -left-5 -top-2">
                     </div>
                     <div class="flex flex-col justify-center mt-3 md:mt-5 items-center gap-5">

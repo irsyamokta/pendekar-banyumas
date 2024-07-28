@@ -1,6 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 const defaultTheme = require('tailwindcss/defaultTheme')
 export default {
+    safelist: [
+        '!duration-[0ms]',
+        '!delay-[0ms]',
+        'html.js :where([class*="taos:"]:not(.taos-init))'
+    ],
     content: [
         "./resources/**/*.blade.php",
         "./resources/**/*.js",
@@ -307,6 +312,6 @@ export default {
         },
     },
     plugins: [
-        require('flowbite/plugin')
+        require('flowbite/plugin'),
     ],
 }

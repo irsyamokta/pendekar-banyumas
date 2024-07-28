@@ -9,13 +9,13 @@
     <meta name="theme-color" content="#6777ef" />
     <link rel="manifest" href="{{ asset('/manifest.json') }}">
     <title>Pendekar Banyumas</title>
-
+    <script>document.documentElement.classList.add('js')</script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body>
     @yield('content')
     <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
+    <script src="https://unpkg.com/taos@1.0.5/dist/taos.js"></script>
 </body>
-
 </html>

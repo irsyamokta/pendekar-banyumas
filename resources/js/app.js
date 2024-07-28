@@ -1,6 +1,5 @@
 import './bootstrap';
 import 'flowbite'
-import Swal from 'sweetalert2'
 
 document.addEventListener('DOMContentLoaded', () => {
     const scrollButton = document.getElementById('scroll')
@@ -18,6 +17,4 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleButtonVisibility();
 
     window.addEventListener('scroll', toggleButtonVisibility);
-
-    
 })
