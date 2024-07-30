@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GeneratePinController;
 use App\Http\Controllers\Admin\InstrumenController;
 use App\Http\Controllers\Client\HomepageController;
+use App\Http\Controllers\Client\TestController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function () {
@@ -28,8 +29,12 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function () 
 Route::prefix('/')->group( function () {
     Route::get('/', [HomepageController::class, 'index'])->name('homepage');
     Route::get('/screening-test', [HomepageController::class, 'screening'])->name('screening');
+    Route::get('/screening-test/pin', [TestController::class, 'inputPin'])->name('pinScreening');
+    Route::post('/screening-test/pin', [TestController::class, 'checkPin'])->name('checkPin');
     Route::get('/mandiri-test', [HomepageController::class, 'mandiri'])->name('mandiri');
 });
+
+
 
 require __DIR__.'/auth.php';
 

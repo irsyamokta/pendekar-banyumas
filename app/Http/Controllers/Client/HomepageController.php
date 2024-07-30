@@ -14,7 +14,7 @@ class HomepageController extends Controller
 
     public function screening()
     {
-        return view('client.page.screening.screening');
+        return view('client.page.screening.page.screening');
     }
 
     public function mandiri()

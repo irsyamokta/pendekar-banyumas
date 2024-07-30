@@ -25,3 +25,10 @@ document.addEventListener('DOMContentLoaded', () => {
         preloader.style.display = 'none';
     }, 400);
 });
+
+document.getElementById('input_pin').addEventListener('input', function() {
+    this.value = this.value.replace(/[^0-9]/g, '');
+    if (this.value.length > 6) {
+        this.value = this.value.slice(0, 6);
+    }
+});
