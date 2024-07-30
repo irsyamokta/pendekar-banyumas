@@ -23,4 +23,9 @@
     .no-spinner {
         -moz-appearance: textfield;
     }
+
+    button:disabled .disabled-button {
+        @apply opacity-15 cursor-default transition-all duration-300;
+    }
+    
 }

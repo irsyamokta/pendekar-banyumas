@@ -28,9 +28,14 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function () 
 
 Route::prefix('/')->group( function () {
     Route::get('/', [HomepageController::class, 'index'])->name('homepage');
-    Route::get('/screening-test', [HomepageController::class, 'screening'])->name('screening');
-    Route::get('/screening-test/pin', [TestController::class, 'inputPin'])->name('pinScreening');
-    Route::post('/screening-test/pin', [TestController::class, 'checkPin'])->name('checkPin');
+    Route::prefix('/screening-test')->group( function () {
+        Route::get('/', [HomepageController::class, 'screening'])->name('screening');
+        Route::get('/pin', [TestController::class, 'inputPin'])->name('pinScreening');
+        Route::post('/pin', [TestController::class, 'checkPin'])->name('checkPin');
+        Route::get('/form-data', [TestController::class, 'formData'])->name('formData');
+        Route::post('/form-data', [TestController::class, 'inputData'])->name('inputData');
+        Route::get('/test', [TestController::class, 'sdqTest'])->name('testQuestions');
+    });
     Route::get('/mandiri-test', [HomepageController::class, 'mandiri'])->name('mandiri');
 });
 

@@ -26,9 +26,103 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 400);
 });
 
-document.getElementById('input_pin').addEventListener('input', function() {
-    this.value = this.value.replace(/[^0-9]/g, '');
-    if (this.value.length > 6) {
-        this.value = this.value.slice(0, 6);
+document.addEventListener('DOMContentLoaded', () => {
+    const inputPin = document.getElementById('input_pin');
+    const nomorHp = document.getElementById('nomor_hp');
+    function handleInputPin(event) {
+        event.target.value = event.target.value.replace(/[^0-9]/g, '');
+        if (event.target.value.length > 6) {
+            event.target.value = event.target.value.slice(0, 6);
+        }
     }
+    function handleInputNomorHp(event) {
+        event.target.value = event.target.value.replace(/[^0-9]/g, '');
+        if (event.target.value.length > 13) {
+            event.target.value = event.target.value.slice(0, 13);
+        }
+    }
+
+    if (inputPin) {
+        inputPin.addEventListener('input', handleInputPin);
+    }
+
+    if (nomorHp) {
+        nomorHp.addEventListener('input', handleInputNomorHp);
+    }
+})
+
+document.addEventListener('DOMContentLoaded', () => {
+    let currentIndex = 0;
+    let radioButtons = document.querySelectorAll('input[type="radio"]');
+    let answers = {};
+    const nextButton = document.getElementById('next-button');
+    const prevButton = document.getElementById('prev-button');
+    const finishButton = document.getElementById('finish-button');
+
+    const updateNextButtonState = () => {
+        if (answers[currentIndex] !== undefined) {
+            nextButton.disabled = false;
+        } else {
+            nextButton.disabled = true;
+        }
+    };
+
+    radioButtons.forEach(radio => {
+        radio.addEventListener('change', (event) => {
+            answers[currentIndex] = event.target.value;
+            nextButton.disabled = false;
+        });
+    });
+
+    document.querySelector('[data-carousel-next]').addEventListener('click', () => {
+        if (currentIndex < totalQuestions - 1) {
+            currentIndex++;
+            updateNextButtonState();
+            prevButton.disabled = false; // Enable the "Prev" button
+        }
+        if (currentIndex === totalQuestions - 1) {
+            nextButton.classList.add('hidden');
+            finishButton.classList.remove('hidden');
+        }
+    });
+
+    document.querySelector('[data-carousel-prev]').addEventListener('click', () => {
+        if (currentIndex > 0) {
+            currentIndex--;
+            finishButton.classList.add('hidden');
+            nextButton.classList.remove('hidden');
+            updateNextButtonState();
+        }
+        if (currentIndex === 0) {
+            prevButton.disabled = true;
+        }
+    });
+    updateNextButtonState();
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const progressBar = document.getElementById('progress-bar');
+    const progressText = document.getElementById('progress-text');
+    let radioButtons = document.querySelectorAll('input[type="radio"]');
+    let answers = new Set();
+
+    const updateProgress = () => {
+        const answeredQuestions = answers.size;
+        const progressPercentage = Math.round((answeredQuestions / totalQuestions) * 100);
+        progressBar.style.width = `${progressPercentage}%`;
+        progressText.textContent = `${progressPercentage}%`;
+    };
+
+    radioButtons.forEach(radio => {
+        radio.addEventListener('change', (event) => {
+            const questionIndex = event.target.name.split('-')[1];
+            answers.add(questionIndex);
+            updateProgress();
+        });
+    });
+
+    updateProgress();
+});
+
+
+
