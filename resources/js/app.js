@@ -18,3 +18,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('scroll', toggleButtonVisibility);
 })
+
+document.addEventListener('DOMContentLoaded', () => {
+    const preloader = document.getElementById('preloader');
+    setTimeout(() => {
+        preloader.style.display = 'none';
+    }, 400);
+});

@@ -14,21 +14,21 @@
             </svg>
         </button>
         <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-            <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-secondary rounded-lg bg-white md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+            <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 rounded-lg bg-white md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0  md:bg-transparent dark:bg-gray-800 md:dark:bg-gray-900">
                 <li>
-                    <a href="#homepage"
+                    <a href="{{ route('homepage') }}"
                         class="block py-2 px-3 text-gray-900 rounded hover:bg-primary md:hover:bg-transparent md:border-0 md:hover:text-soft md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Beranda</a>
                 </li>
                 <li>
-                    <a href="#about"
+                    <a href="{{ route('homepage') }}#about"
                         class="block py-2 px-3 text-gray-900 rounded hover:bg-primary md:hover:bg-transparent md:border-0 md:hover:text-soft md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Tentang</a>
                 </li>
                 <li>
-                    <a href="#tutorial"
+                    <a href="{{ route('homepage') }}#tutorial"
                         class="block py-2 px-3 text-gray-900 rounded hover:bg-primary md:hover:bg-transparent md:border-0 md:hover:text-soft md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Tutorial</a>
                 </li>
                 <li>
-                    <a href="#test"
+                    <a href="{{ route('homepage') }}#test"
                         class="block py-2 px-3 text-white bg-secondary rounded md:bg-transparent md:text-secondary md:font-bold md:p-0 dark:text-white md:dark:text-blue-500" aria-current="page">Tes</a>
                 </li>
             </ul>

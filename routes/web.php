@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GeneratePinController;
 use App\Http\Controllers\Admin\InstrumenController;
+use App\Http\Controllers\Client\HomepageController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function () {
@@ -24,16 +25,11 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function () 
     Route::get('/report', [DashboardController::class, 'report'])->name('report');
 });
 
-    Route::get('/', function(){
-        return view('client.page.homepage.homepage');
-    });
+Route::prefix('/')->group( function () {
+    Route::get('/', [HomepageController::class, 'index'])->name('homepage');
+    Route::get('/screening-test', [HomepageController::class, 'screening'])->name('screening');
+    Route::get('/mandiri-test', [HomepageController::class, 'mandiri'])->name('mandiri');
+});
 
-    Route::get('/screening-test', function(){
-        return view('client.page.screening.screening');
-    });
-
-    Route::get('/mandiri-test', function(){
-        return view('client.page.mandiri.mandiri');
-    });
 require __DIR__.'/auth.php';
 
