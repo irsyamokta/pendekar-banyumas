@@ -12,7 +12,7 @@
                     <div class="flex flex-col justify-center mt-3 md:mt-5 items-center gap-5">
                         <h1 class="text-xl lg:text-3xl font-semibold">Screening Tes</h1>
                         <p class="text-xs md:text-sm lg:text-lg text-center px-5 md:px-10 lg:px-25">Ikuti tes skrining di daerah Anda untuk mendapatkan rujukan secara langsung oleh Dinas Kesehatan Banyumas</p>
-                        <a href="" class="w-30 lg:w-40 lg:h-12 lg:text-lg py-2 bg-gradient-to-r from-accent to-secondary text-sm text-center text-white rounded-[30px]">Ikuti Tes</a>
+                        <a href="{{ url('/screening-test') }}" class="w-30 lg:w-40 lg:h-12 lg:text-lg py-2 bg-gradient-to-r from-accent to-secondary text-sm text-center text-white rounded-[30px]">Ikuti Tes</a>
                     </div>
                     <img src="{{ asset('assets/icon/elips.png') }}" alt="" class="w-30 absolute -right-1 -bottom-2">
                 </div>
@@ -22,7 +22,7 @@
                     <div class="flex flex-col justify-center mt-3 md:mt-5 items-center gap-5">
                         <h1 class="text-xl lg:text-3xl font-semibold">Tes Mandiri</h1>
                         <p class="text-xs md:text-sm lg:text-lg text-center px-5 md:px-10 lg:px-25">Lakukan tes mandiri untuk mengetahui kondisi kesehatan mental Anda yang mungkin butuh perhatian lebih lanjut.</p>
-                        <a href="" class="w-30 lg:w-40 lg:h-12 lg:text-lg py-2 bg-gradient-to-r from-accent to-secondary text-sm text-center text-white rounded-[30px]">Ikuti Tes</a>
+                        <a href="{{ url('/mandiri-test') }}" class="w-30 lg:w-40 lg:h-12 lg:text-lg py-2 bg-gradient-to-r from-accent to-secondary text-sm text-center text-white rounded-[30px]">Ikuti Tes</a>
                     </div>
                     <img src="{{ asset('assets/icon/elips.png') }}" alt="" class="w-30 absolute -right-1 -bottom-2">
                 </div>
