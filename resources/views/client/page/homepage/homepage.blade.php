@@ -1,5 +1,6 @@
 @extends('client.index')
 @section('content')
+    @include('client.partials.preloader')
     @include('client.partials.navbar')
     @include('client.page.homepage.components.hero')
     @include('client.page.homepage.components.about')

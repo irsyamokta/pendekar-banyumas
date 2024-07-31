@@ -3,6 +3,8 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GeneratePinController;
 use App\Http\Controllers\Admin\InstrumenController;
+use App\Http\Controllers\Client\HomepageController;
+use App\Http\Controllers\Client\TestController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function () {
@@ -24,16 +26,25 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function () 
     Route::get('/report', [DashboardController::class, 'report'])->name('report');
 });
 
+<<<<<<< HEAD
+Route::prefix('/')->group( function () {
+    Route::get('/', [HomepageController::class, 'index'])->name('homepage');
+    Route::prefix('/screening-test')->group( function () {
+        Route::get('/', [HomepageController::class, 'screening'])->name('screening');
+        Route::get('/pin', [TestController::class, 'inputPin'])->name('pinScreening');
+        Route::post('/pin', [TestController::class, 'checkPin'])->name('checkPin');
+        Route::get('/form-data', [TestController::class, 'formData'])->name('formData');
+        Route::post('/form-data', [TestController::class, 'inputData'])->name('inputData');
+        Route::get('/test', [TestController::class, 'sdqTest'])->name('testQuestions');
+=======
     Route::get('/home', function(){
         return view('client.page.homepage.homepage');
+>>>>>>> ce6208d275841c38fecd463fa385f468e3afd330
     });
+    Route::get('/mandiri-test', [HomepageController::class, 'mandiri'])->name('mandiri');
+});
 
-    Route::get('/screening-test', function(){
-        return view('client.page.screening.screening');
-    });
 
-    Route::get('/mandiri-test', function(){
-        return view('client.page.mandiri.mandiri');
-    });
+
 require __DIR__.'/auth.php';
 

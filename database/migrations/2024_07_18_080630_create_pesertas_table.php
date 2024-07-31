@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pesertas', function (Blueprint $table) {
             $table->bigIncrements('id_peserta');
             $table->string('nama_lengkap');
-            $table->date('tanggal_lahir');
+            $table->string('tanggal_lahir');
             $table->string('jenis_kelamin');
             $table->string('nomor_hp');
             $table->string('email');

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth no-scroll">
 
 <head>
     <meta charset="UTF-8">
@@ -12,7 +12,7 @@
     <script>
         document.documentElement.classList.add('js')
     </script>
-    @vite(['resources/css/app.css', 'resources/css/custome.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body>
