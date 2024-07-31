@@ -26,7 +26,6 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function () 
     Route::get('/report', [DashboardController::class, 'report'])->name('report');
 });
 
-<<<<<<< HEAD
 Route::prefix('/')->group( function () {
     Route::get('/', [HomepageController::class, 'index'])->name('homepage');
     Route::prefix('/screening-test')->group( function () {
@@ -36,10 +35,6 @@ Route::prefix('/')->group( function () {
         Route::get('/form-data', [TestController::class, 'formData'])->name('formData');
         Route::post('/form-data', [TestController::class, 'inputData'])->name('inputData');
         Route::get('/test', [TestController::class, 'sdqTest'])->name('testQuestions');
-=======
-    Route::get('/home', function(){
-        return view('client.page.homepage.homepage');
->>>>>>> ce6208d275841c38fecd463fa385f468e3afd330
     });
     Route::get('/mandiri-test', [HomepageController::class, 'mandiri'])->name('mandiri');
 });
