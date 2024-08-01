@@ -26,9 +26,10 @@ class InstrumenController extends Controller
             $data->pertanyaan = $request->pertanyaan;
             $data->domain = $request->domain;
             $data->kategori = $request->kategori;
+            $latestOrder = InstrumenSDQ::where('kategori', $request->kategori)
+            ->max('urutan');
+            $data->urutan = $latestOrder ? $latestOrder + 1 : 1;
             $data->save();
-            DB::statement('SET @i = 0');
-            DB::statement('UPDATE instrumen_sdq SET urutan = (@i := @i + 1) ORDER BY id_sdq');
             return redirect()->route('sdqFirst')->with('Success', 'Berhasil menambahkan pertanyaan');
         } catch (\Exception $e){
             return redirect()->route('sdqFirst')->with('error', $e->getMessage());
@@ -49,9 +50,16 @@ class InstrumenController extends Controller
 
     public function deleteSDQFirst($id){
         $data = InstrumenSDQ::find($id);
+        $kategori = $data->kategori;
         $data->delete();
-        DB::statement('SET @i = 0');
-        DB::statement('UPDATE instrumen_sdq SET urutan = (@i := @i + 1) ORDER BY id_sdq');
+        $items = InstrumenSDQ::where('kategori', $kategori)
+            ->orderBy('id_sdq')
+            ->get();
+        $urutan = 1;
+        foreach ($items as $item) {
+            $item->urutan = $urutan++;
+            $item->save();
+        }
         return redirect()->route('sdqFirst')->with('Success', 'Berhasil menghapus pertanyaan');
     }
 
@@ -69,9 +77,10 @@ class InstrumenController extends Controller
             $data->pertanyaan = $request->pertanyaan;
             $data->domain = $request->domain;
             $data->kategori = $request->kategori;
+            $latestOrder = InstrumenSDQ::where('kategori', $request->kategori)
+            ->max('urutan');
+            $data->urutan = $latestOrder ? $latestOrder + 1 : 1;
             $data->save();
-            DB::statement('SET @i = 0');
-            DB::statement('UPDATE instrumen_sdq SET urutan = (@i := @i + 1) ORDER BY id_sdq');
             return redirect()->route('sdqSecond')->with('Success', 'Berhasil menambahkan pertanyaan');
         } catch (\Exception $e){
             return redirect()->route('sdqSecond')->with('error', $e->getMessage());
@@ -92,9 +101,16 @@ class InstrumenController extends Controller
 
     public function deleteSDQSecond($id){
         $data = InstrumenSDQ::find($id);
+        $kategori = $data->kategori;
         $data->delete();
-        DB::statement('SET @i = 0');
-        DB::statement('UPDATE instrumen_sdq SET urutan = (@i := @i + 1) ORDER BY id_sdq');
+        $items = InstrumenSDQ::where('kategori', $kategori)
+            ->orderBy('id_sdq')
+            ->get();
+        $urutan = 1;
+        foreach ($items as $item) {
+            $item->urutan = $urutan++;
+            $item->save();
+        }
         return redirect()->route('sdqSecond')->with('Success', 'Berhasil menghapus pertanyaan');
     }
 
