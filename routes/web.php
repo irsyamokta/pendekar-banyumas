@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\InstrumenController;
 use App\Http\Controllers\Client\HomepageController;
 use App\Http\Controllers\Client\TestController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\FormDataMiddleware;
 
 Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
@@ -39,9 +40,11 @@ Route::prefix('/')->group( function () {
         Route::get('/', [HomepageController::class, 'screening'])->name('screening');
         Route::get('/pin', [TestController::class, 'inputPin'])->name('pinScreening');
         Route::post('/pin', [TestController::class, 'checkPin'])->name('checkPin');
-        Route::get('/form-data', [TestController::class, 'formData'])->name('formData');
-        Route::post('/form-data', [TestController::class, 'inputData'])->name('inputData');
-        Route::get('/test', [TestController::class, 'sdqTest'])->name('testQuestions');
+        Route::middleware(['isCorrectPin'])->group( function () {
+            Route::get('/form-data', [TestController::class, 'formData'])->name('formData');
+            Route::post('/form-data', [TestController::class, 'inputData'])->name('inputData');
+            Route::get('/test', [TestController::class, 'sdqQuestions'])->name('sdqQuestions');
+        });
     });
     Route::get('/mandiri-test', [HomepageController::class, 'mandiri'])->name('mandiri');
 });

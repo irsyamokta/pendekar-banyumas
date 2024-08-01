@@ -14,31 +14,41 @@
             <div class="relative h-96 lg:h-80 xl:h-100 overflow-hidden rounded-lg">
                 <form id="sdq-form" action="" method="POST" enctype="multipart/form-data">
                     @csrf
-                    @foreach ($instrumenSdq as $index => $item)
+                    @foreach ($sdqQuestions as $index => $item)
                         <div class="hidden duration-700 ease-in-out"
                             data-carousel-item="{{ $index === 0 ? 'active' : '' }}">
                             <div class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
                                 <p
-                                    class="text-sm md:text-lg h-30 lg:h-0 xl:h-10 lg:text-sm xl:md:text-lg text-center font-medium">
+                                    class="text-sm md:text-lg h-20 lg:h-0 xl:h-10 lg:text-sm xl:md:text-lg text-center font-medium">
                                     {{ $item->pertanyaan }}</p>
-                                <ul class="grid w-full gap-3 md:grid-cols-1 mt-2 lg:mt-10 xl:mt-20 p-1 md:p-5">
+                                <ul class="grid w-full gap-3 md:grid-cols-1 mt-2 lg:mt-8 p-1 md:p-5">
                                     <li>
-                                        <input type="radio" id="yes-{{ $item->urutan }}"
-                                            name="sdq-{{ $item->urutan }}" value="1" class="hidden peer" />
-                                        <label for="yes-{{ $item->urutan }}"
+                                        <input type="radio" id="tidak-benar-{{ $item->urutan }}"
+                                            name="sdq-{{ $item->urutan }}" value="{{ $item->tidak_benar }}" class="hidden peer" />
+                                        <label for="tidak-benar-{{ $item->urutan }}"
                                             class="inline-flex items-center justify-center w-full p-5 xl:p-7 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-secondary peer-checked:bg-green-100 peer-checked:border-secondary peer-checked:text-secondary peer-checked:font-bold hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
                                             <div class="block">
-                                                <div class="w-full">Ya</div>
+                                                <div class="w-full">Tidak Benar</div>
                                             </div>
                                         </label>
                                     </li>
                                     <li>
-                                        <input type="radio" id="no-{{ $item->urutan }}" name="sdq-{{ $item->urutan }}"
-                                            value="0" class="hidden peer">
-                                        <label for="no-{{ $item->urutan }}"
+                                        <input type="radio" id="agak-benar-{{ $item->urutan }}" name="sdq-{{ $item->urutan }}"
+                                            value="{{ $item->agak_benar }}" class="hidden peer">
+                                        <label for="agak-benar-{{ $item->urutan }}"
                                             class="inline-flex items-center justify-center w-full p-5 xl:p-7 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:bg-green-100 dark:peer-checked:text-secondary peer-checked:border-secondary peer-checked:text-secondary peer-checked:font-bold hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
                                             <div class="block">
-                                                <div class="w-full">Tidak</div>
+                                                <div class="w-full">Agak Benar</div>
+                                            </div>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" id="selalu-benar-{{ $item->urutan }}" name="sdq-{{ $item->urutan }}"
+                                            value="{{ $item->selalu_benar }}" class="hidden peer">
+                                        <label for="selalu-benar-{{ $item->urutan }}"
+                                            class="inline-flex items-center justify-center w-full p-5 xl:p-7 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:bg-green-100 dark:peer-checked:text-secondary peer-checked:border-secondary peer-checked:text-secondary peer-checked:font-bold hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+                                            <div class="block">
+                                                <div class="w-full">Selalu Benar</div>
                                             </div>
                                         </label>
                                     </li>
@@ -89,5 +99,5 @@
 </section>
 
 <script>   
-    const totalQuestions = @json(count($instrumenSdq));
+    const totalQuestions = @json(count($sdqQuestions));
 </script>
