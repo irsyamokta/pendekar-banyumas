@@ -17,6 +17,11 @@
   .font-normal {
     font-weight: 400; /* atau nilai yang sesuai */
   }
+
+  [contenteditable]{
+    outline: 0px solid transparent;
+    border-bottom: 1px solid gray;
+  }
   /* Chrome, Safari and Opera */
   .no-scrollbar::-webkit-scrollbar {
     display: none;

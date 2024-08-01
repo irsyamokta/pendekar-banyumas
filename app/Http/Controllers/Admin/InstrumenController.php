@@ -10,46 +10,95 @@ use Illuminate\Support\Facades\DB;
 
 class InstrumenController extends Controller
 {
-    public function viewSDQ($id){
+
+    // SDQ First
+    public function viewSDQFirst($id){
         $data = InstrumenSDQ::where('id_sdq', $id)->first();
         if(!$data){
             abort(404);
         }
-        return view('admin.dashboard.menu.edit-sdq', compact('data'));
+        return view('admin.dashboard.menu.edit-sdq-first', compact('data'));
     }
 
-    public function storeSDQ(Request $request){
+    public function storeSDQFirst(Request $request){
         try{
             $data = new InstrumenSDQ();
             $data->pertanyaan = $request->pertanyaan;
+            $data->domain = $request->domain;
+            $data->kategori = $request->kategori;
             $data->save();
             DB::statement('SET @i = 0');
             DB::statement('UPDATE instrumen_sdq SET urutan = (@i := @i + 1) ORDER BY id_sdq');
-            return redirect()->route('sdq')->with('Success', 'Berhasil menambahkan pertanyaan');
+            return redirect()->route('sdqFirst')->with('Success', 'Berhasil menambahkan pertanyaan');
         } catch (\Exception $e){
-            return redirect()->route('sdq')->with('error', $e->getMessage());
+            return redirect()->route('sdqFirst')->with('error', $e->getMessage());
         }
     }
 
-    public function editSDQ(Request $request, $id){
+    public function editSDQFirst(Request $request, $id){
         try{
             $data = InstrumenSDQ::find($id);
             $data->pertanyaan = $request->pertanyaan;
+            $data->domain = $request->domain;
             $data->save();
-            return redirect()->route('sdq')->with('Success', 'Berhasil mengedit pertanyaan');
+            return redirect()->route('sdqFirst')->with('Success', 'Berhasil mengedit pertanyaan');
         } catch(\Exception $e){
-            return redirect()->route('sdq')->with('error', $e->getMessage());
+            return redirect()->route('sdqFirst')->with('error', $e->getMessage());
         }
     }
 
-    public function deleteSDQ($id){
+    public function deleteSDQFirst($id){
         $data = InstrumenSDQ::find($id);
         $data->delete();
         DB::statement('SET @i = 0');
         DB::statement('UPDATE instrumen_sdq SET urutan = (@i := @i + 1) ORDER BY id_sdq');
-        return redirect()->route('sdq')->with('Success', 'Berhasil menghapus pertanyaan');
+        return redirect()->route('sdqFirst')->with('Success', 'Berhasil menghapus pertanyaan');
     }
-    
+
+    // SDQ Second
+    public function viewSDQSecond($id){
+        $data = InstrumenSDQ::where('id_sdq', $id)->first();
+        if(!$data){
+            abort(404);
+        }
+        return view('admin.dashboard.menu.edit-sdq-second', compact('data'));
+    }
+    public function storeSDQSecond(Request $request){
+        try{
+            $data = new InstrumenSDQ();
+            $data->pertanyaan = $request->pertanyaan;
+            $data->domain = $request->domain;
+            $data->kategori = $request->kategori;
+            $data->save();
+            DB::statement('SET @i = 0');
+            DB::statement('UPDATE instrumen_sdq SET urutan = (@i := @i + 1) ORDER BY id_sdq');
+            return redirect()->route('sdqSecond')->with('Success', 'Berhasil menambahkan pertanyaan');
+        } catch (\Exception $e){
+            return redirect()->route('sdqSecond')->with('error', $e->getMessage());
+        }
+    }
+
+    public function editSDQSecond(Request $request, $id){
+        try{
+            $data = InstrumenSDQ::find($id);
+            $data->pertanyaan = $request->pertanyaan;
+            $data->domain = $request->domain;
+            $data->save();
+            return redirect()->route('sdqSecond')->with('Success', 'Berhasil mengedit pertanyaan');
+        } catch(\Exception $e){
+            return redirect()->route('sdqSecond')->with('error', $e->getMessage());
+        }
+    }
+
+    public function deleteSDQSecond($id){
+        $data = InstrumenSDQ::find($id);
+        $data->delete();
+        DB::statement('SET @i = 0');
+        DB::statement('UPDATE instrumen_sdq SET urutan = (@i := @i + 1) ORDER BY id_sdq');
+        return redirect()->route('sdqSecond')->with('Success', 'Berhasil menghapus pertanyaan');
+    }
+
+    // SRQ
 
     public function viewSRQ($id){
         $data = InstrumenSRQ::where('id_srq', $id)->first();

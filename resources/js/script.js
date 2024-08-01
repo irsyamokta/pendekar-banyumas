@@ -1,23 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
     const generate = document.getElementById('generate');
-            const pin = document.getElementById('pin');
-            const inputPin = document.getElementById('input-pin');
+    const pin = document.getElementById('pin');
+    const inputPin = document.getElementById('input-pin');
 
-            generate.addEventListener('click', () => {
-                const newPin = Math.floor(100000 + Math.random() * 900000).toString().padStart(6, '0');
-                localStorage.setItem('generatedPin', newPin);
-                location.reload();
-            });
+    generate.addEventListener('click', () => {
+        const newPin = Math.floor(100000 + Math.random() * 900000).toString().padStart(6, '0');
+        localStorage.setItem('generatedPin', newPin);
+        location.reload();
+    });
 
-            if (localStorage.getItem('generatedPin')) {
-                const savedPin = localStorage.getItem('generatedPin');
-                inputPin.value = savedPin;
-            }
+    if (localStorage.getItem('generatedPin')) {
+        const savedPin = localStorage.getItem('generatedPin');
+        inputPin.value = savedPin;
+    }
 })
 
 document.querySelectorAll('.delete-confirm').forEach((button) => {
     button.addEventListener('click', function (e) {
-        e.preventDefault(); 
+        e.preventDefault();
         const url = this.href;
         Swal.fire({
             title: 'Apakah kamu yakin?',
@@ -35,36 +35,78 @@ document.querySelectorAll('.delete-confirm').forEach((button) => {
     });
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+    const selectDomain = document.getElementById('domain');
+    const options = selectDomain.options;
+
+    for (let i = 0; i < options.length; i++) {
+        if (options[i].value === domainValue) {
+            selectDomain.remove(i);
+            break;
+        }
+    }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
-    const addSdq = document.getElementById("add-sdq")
+    const addSdqFirst = document.getElementById("add-sdq-first")
+    const addSdqSecond = document.getElementById("add-sdq-second")
     const addSrq = document.getElementById("add-srq")
-    if (addSdq) {
-        addSdq.addEventListener('click', () => {
+    let questionsAdd = false
+
+
+    if (addSdqFirst) {
+        addSdqFirst.addEventListener('click', () => {
             const container = document.getElementById("sdq-container")
             const newCard = document.createElement('div')
             const newQuestionCount = container.getElementsByClassName('sdq-question').length + 1
+
+            if (questionsAdd) {
+                return
+            }
+
             newCard.className = 'sdq-question rounded-sm border border-stroke bg-white px-7.5 py-4 shadow-default dark:border-strokedark dark:bg-boxdark'
             newCard.innerHTML = `
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <span class="text-lg font-regular text-dark dark:text-primary">Pertanyaan ${newQuestionCount}</span>
+                        <div class="flex flex-col">
+                            <div id="toast-warning" class="flex items-center p-4 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300 ease-in hidden" role="alert">
+                                <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                                </svg>
+                                <span class="sr-only">Info</span>
+                                <div>
+                                    <span class="font-medium">Pilih domain!</span> Pastikan anda memilih domain terlebih dahulu
+                                </div>
                             </div>
-                            <div class="flex gap-2">
-                                <a href="" class="delete-sdq flex justify-center items-center gap-1 text-sm font-medium w-[70px] h-[25px] md:w-[80px] md:h-[30px] cursor-pointer rounded-[30px] bg-[#D9D9D9] text-dark duration-300 ease-linear">
-                                    <img src="../assets/icon/icon-delete.png" alt="edit" class="w-3 h-3 md:w-4 md:h-4">
-                                    <span>Hapus</span>
-                                </a>
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <span class="text-lg font-regular text-dark dark:text-primary">Pertanyaan ${newQuestionCount}</span>
+                                    <span class="hidden"><input type="text" name="kategori" value="4-10 Tahun"></span>
+                                </div>
+                                <div class="flex gap-2">
+                                    <a href="" class="delete-sdq flex justify-center items-center gap-1 text-sm font-medium w-[70px] h-[25px] md:w-[80px] md:h-[30px] cursor-pointer rounded-[30px] bg-[#D9D9D9] text-dark duration-300 ease-linear">
+                                        <img src="/assets/icon/icon-delete.png" alt="edit" class="w-3 h-3 md:w-4 md:h-4">
+                                        <span>Hapus</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                        <div class="mt-4">
-                            <textarea name="pertanyaan" rows="3" class="w-full overflow-auto dark:bg-transparent" required></textarea>
+                        <div class="mt-4 flex flex-col md:flex-row gap-2">
+                            <textarea name="pertanyaan" rows="3" class="w-full overflow-auto dark:bg-transparent" placeholder="Tulis pertanyaan..." required></textarea>
+                            <select name="domain" id="domain" class="h-12 text-sm md:text-md dark:bg-transparent">
+                                <option class="text-xs md:text-md" value="" disabled selected>Pilih Domain</option>
+                                <option class="text-xs md:text-md" value="E">E</option>
+                                <option class="text-xs md:text-md" value="C">C</option>
+                                <option class="text-xs md:text-md" value="H">H</option>
+                                <option class="text-xs md:text-md" value="P">P</option>
+                                <option class="text-xs md:text-md" value="Pro">Pro</option>
+                            </select>
                         </div>
                     `
             container.appendChild(newCard)
-
+            questionsAdd = true
             newCard.querySelector('.delete-sdq').addEventListener('click', function (e) {
                 e.preventDefault();
                 container.removeChild(newCard);
+                questionsAdd = false
             })
         })
 
@@ -74,6 +116,86 @@ document.addEventListener('DOMContentLoaded', () => {
                 const questionDiv = this.closest('.sdq-question');
                 questionDiv.parentNode.removeChild(questionDiv);
             })
+        })
+
+        document.getElementById('sdq-form').addEventListener('submit', function (e) {
+            const selectDomain = document.getElementById('domain');
+            const toastWarning = document.getElementById('toast-warning');
+            if (selectDomain.value === "") {
+                e.preventDefault();
+                toastWarning.classList.remove('hidden');
+            }
+        })
+    }
+    if (addSdqSecond) {
+        addSdqSecond.addEventListener('click', () => {
+            const container = document.getElementById("sdq-container")
+            const newCard = document.createElement('div')
+            const newQuestionCount = container.getElementsByClassName('sdq-question').length + 1
+            if (questionsAdd) {
+                return
+            }
+            newCard.className = 'sdq-question rounded-sm border border-stroke bg-white px-7.5 py-4 shadow-default dark:border-strokedark dark:bg-boxdark'
+            newCard.innerHTML = `
+                        <div class="flex flex-col">
+                            <div id="toast-warning" class="flex items-center p-4 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300 ease-in hidden" role="alert">
+                                <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                                </svg>
+                                <span class="sr-only">Info</span>
+                                <div>
+                                    <span class="font-medium">Pilih domain!</span> Pastikan anda memilih domain terlebih dahulu
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <span class="text-lg font-regular text-dark dark:text-primary">Pertanyaan ${newQuestionCount}</span>
+                                    <span class="hidden"><input type="text" name="kategori" value="11-18 Tahun"></span>
+                                </div>
+                                <div class="flex gap-2">
+                                    <a href="" class="delete-sdq flex justify-center items-center gap-1 text-sm font-medium w-[70px] h-[25px] md:w-[80px] md:h-[30px] cursor-pointer rounded-[30px] bg-[#D9D9D9] text-dark duration-300 ease-linear">
+                                        <img src="/assets/icon/icon-delete.png" alt="edit" class="w-3 h-3 md:w-4 md:h-4">
+                                        <span>Hapus</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex flex-col md:flex-row gap-2">
+                            <textarea name="pertanyaan" rows="3" class="w-full overflow-auto dark:bg-transparent" placeholder="Tulis pertanyaan..." required></textarea>
+                            <select name="domain" id="domain" class="h-12 text-sm md:text-md dark:bg-transparent">
+                                <option class="text-xs md:text-md" value="" disabled selected>Pilih Domain</option>
+                                <option class="text-xs md:text-md" value="E">E</option>
+                                <option class="text-xs md:text-md" value="C">C</option>
+                                <option class="text-xs md:text-md" value="H">H</option>
+                                <option class="text-xs md:text-md" value="P">P</option>
+                                <option class="text-xs md:text-md" value="Pro">Pro</option>
+                            </select>
+                        </div>
+                    `
+            container.appendChild(newCard)
+            questionsAdd = true
+            newCard.querySelector('.delete-sdq').addEventListener('click', function (e) {
+                e.preventDefault();
+                container.removeChild(newCard);
+                questionsAdd = false
+            })
+        })
+
+        document.querySelectorAll('.delete-sdq').forEach(function (deleteButton) {
+            deleteButton.addEventListener('click', function (e) {
+                e.preventDefault();
+                const questionDiv = this.closest('.sdq-question');
+                questionDiv.parentNode.removeChild(questionDiv);
+            })
+        })
+
+        document.getElementById('sdq-form').addEventListener('submit', function (e) {
+            const selectDomain = document.getElementById('domain');
+            const toastWarning = document.getElementById('toast-warning');
+            if (selectDomain.value === "") {
+                e.preventDefault();
+                toastWarning.classList.remove('hidden');
+            }
         })
     }
 

@@ -9,8 +9,7 @@
                 @include('admin.dashboard.partials.navigations.header')
                 <main>
                     <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
-                        @include('admin.dashboard.partials.toast.toast')
-                        @include('admin.dashboard.partials.form.store.instrument-sdq')
+                        @include('admin.dashboard.partials.cards.sdq')
                     </div>
                 </main>
             </div>

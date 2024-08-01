@@ -24,8 +24,18 @@ class DashboardController extends Controller
 
     public function sdq()
     {
-        $data = InstrumenSDQ::all();
-        return view('admin.dashboard.menu.sdq', compact('data'));
+        return view('admin.dashboard.menu.sdq');
+    }
+
+    public function sdqFirst()
+    {
+        $data = InstrumenSDQ::where('kategori', '4-10 Tahun')->get();
+        return view('admin.dashboard.menu.submenu-sdq-first', compact('data'));
+    }
+    public function sdqSecond()
+    {
+        $data = InstrumenSDQ::where('kategori', '11-18 Tahun')->get();
+        return view('admin.dashboard.menu.submenu-sdq-second', compact('data'));
     }
 
     public function srq()

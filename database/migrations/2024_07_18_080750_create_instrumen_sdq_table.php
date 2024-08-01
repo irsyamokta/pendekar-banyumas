@@ -15,6 +15,8 @@ return new class extends Migration
             $table->bigIncrements('id_sdq');
             $table->integer('urutan')->nullable();
             $table->text('pertanyaan');
+            $table->string('domain');
+            $table->string('kategori');
             $table->timestamps();
 
             $table->primary('id_sdq');

@@ -4,14 +4,16 @@
     <div class="grid grid-cols-1 gap-9 sm:grid-cols-1">
         <div
             class="rounded-sm border border-stroke bg-white px-7.5 py-4 shadow-default dark:border-strokedark dark:bg-boxdark">
-            <div class="mt-4 flex items-center justify-between">
+            <div class="flex items-center justify-between">
                 <div>
-                    <span class="text-sm md:text-lg font-regular text-dark dark:text-primary">Self-Reporting Questionnaire
-                        (SRQ)</span>
+                    <h4 class="text-title-sm 2xl:text-title-lg font-bold text-black dark:text-white">
+                        Self-Reporting Questionnaire (SRQ)
+                    </h4>
+                    <span class="text-sm 2xl:text-base font-medium">Usia di atas 18 Tahun</span>
                 </div>
                 <span>
                     <button type="submit"
-                        class="w-[80px] h-[30px] md:w-[100px] md:h-[35px] text-sm md:text-lg rounded-[30px] bg-secondary text-primary hover:bg-active duration-300 ease-linear dark:bg-meta-4 hover:dark:bg-primary hover:dark:text-secondary">Simpan</button>
+                        class="w-[80px] h-[30px] md:w-[100px] md:h-[35px] text-sm rounded-[30px] bg-secondary text-primary hover:bg-active duration-300 ease-linear dark:bg-meta-4 hover:dark:bg-primary hover:dark:text-secondary">Simpan</button>
                 </span>
             </div>
         </div>
