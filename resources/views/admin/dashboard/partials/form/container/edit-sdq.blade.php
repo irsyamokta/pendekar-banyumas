@@ -17,7 +17,7 @@
         </div>
     </div>
     {{-- Question --}}
-    <div class="mt-4">
+    <div class="mt-4 flex flex-col gap-2">
         <div class="mt-4 flex flex-col md:flex-row gap-2">
             <textarea name="pertanyaan" rows="3" class="w-full overflow-auto dark:bg-transparent"
                 placeholder="Tulis pertanyaan..." required>{{ $data->pertanyaan }}</textarea>
@@ -30,10 +30,33 @@
                 <option class="text-xs md:text-md" value="Pro">Pro</option>
             </select>
         </div>
+        <div class="flex flex-col md:flex-row gap-2">
+            <select name="tidak_benar" id="tidak-benar" class="h-12 text-sm md:text-md dark:bg-transparent">
+                <option class="text-xs md:text-md" value="" selected>{{ $data->tidak_benar }}</option>
+                <option class="text-xs md:text-md" value="0">0</option>
+                <option class="text-xs md:text-md" value="1">1</option>
+                <option class="text-xs md:text-md" value="2">2</option>
+            </select>
+            <select name="agak_benar" id="agak-benar" class="h-12 text-sm md:text-md dark:bg-transparent">
+                <option class="text-xs md:text-md" value="" selected>{{ $data->agak_benar }}</option>
+                <option class="text-xs md:text-md" value="0">0</option>
+                <option class="text-xs md:text-md" value="1">1</option>
+                <option class="text-xs md:text-md" value="2">2</option>
+            </select>
+            <select name="selalu_benar" id="selalu-benar" class="h-12 text-sm md:text-md dark:bg-transparent">
+                <option class="text-xs md:text-md" value="" selected>{{ $data->selalu_benar }}</option>
+                <option class="text-xs md:text-md" value="0">0</option>
+                <option class="text-xs md:text-md" value="1">1</option>
+                <option class="text-xs md:text-md" value="2">2</option>
+            </select>
+        </div>
     </div>
 </div>
 
 <script>   
     const domainValue = "{{ $data->domain }}"
+    const tidakBenar = "{{ $data->tidak_benar }}"
+    const agakBenar = "{{ $data->agak_benar }}"
+    const selaluBenar = "{{ $data->selalu_benar }}"
 </script>
 

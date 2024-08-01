@@ -17,8 +17,10 @@ return new class extends Migration
             $table->text('pertanyaan');
             $table->string('domain');
             $table->string('kategori');
+            $table->integer('tidak_benar');
+            $table->integer('agak_benar');
+            $table->integer('selalu_benar');
             $table->timestamps();
-
             $table->primary('id_sdq');
         });
     }

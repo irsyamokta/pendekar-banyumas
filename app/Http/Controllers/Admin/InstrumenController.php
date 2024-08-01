@@ -26,6 +26,9 @@ class InstrumenController extends Controller
             $data->pertanyaan = $request->pertanyaan;
             $data->domain = $request->domain;
             $data->kategori = $request->kategori;
+            $data->tidak_benar = $request->tidak_benar;
+            $data->agak_benar = $request->agak_benar;
+            $data->selalu_benar = $request->selalu_benar;
             $latestOrder = InstrumenSDQ::where('kategori', $request->kategori)
             ->max('urutan');
             $data->urutan = $latestOrder ? $latestOrder + 1 : 1;
@@ -40,7 +43,10 @@ class InstrumenController extends Controller
         try{
             $data = InstrumenSDQ::find($id);
             $data->pertanyaan = $request->pertanyaan;
-            $data->domain = $request->domain;
+            $data->domain = $request->domain ?? $data->domain;
+            $data->tidak_benar = $request->tidak_benar ?? $data->tidak_benar;
+            $data->agak_benar = $request->agak_benar ?? $data->agak_benar;
+            $data->selalu_benar = $request->selalu_benar ?? $data->selalu_benar;
             $data->save();
             return redirect()->route('sdqFirst')->with('Success', 'Berhasil mengedit pertanyaan');
         } catch(\Exception $e){
@@ -77,6 +83,9 @@ class InstrumenController extends Controller
             $data->pertanyaan = $request->pertanyaan;
             $data->domain = $request->domain;
             $data->kategori = $request->kategori;
+            $data->tidak_benar = $request->tidak_benar;
+            $data->agak_benar = $request->agak_benar;
+            $data->selalu_benar = $request->selalu_benar;
             $latestOrder = InstrumenSDQ::where('kategori', $request->kategori)
             ->max('urutan');
             $data->urutan = $latestOrder ? $latestOrder + 1 : 1;
@@ -91,7 +100,10 @@ class InstrumenController extends Controller
         try{
             $data = InstrumenSDQ::find($id);
             $data->pertanyaan = $request->pertanyaan;
-            $data->domain = $request->domain;
+            $data->domain = $request->domain ?? $data->domain;
+            $data->tidak_benar = $request->tidak_benar ?? $data->tidak_benar;
+            $data->agak_benar = $request->agak_benar ?? $data->agak_benar;
+            $data->selalu_benar = $request->selalu_benar ?? $data->selalu_benar;
             $data->save();
             return redirect()->route('sdqSecond')->with('Success', 'Berhasil mengedit pertanyaan');
         } catch(\Exception $e){
