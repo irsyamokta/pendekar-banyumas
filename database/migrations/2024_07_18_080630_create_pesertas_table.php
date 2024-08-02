@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('kelurahan');
             $table->string('kecamatan');
             $table->string('kabupaten');
+            $table->string('token')->unique();
 
             $table->primary('id_peserta');
             $table->timestamps();

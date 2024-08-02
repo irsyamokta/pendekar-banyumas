@@ -1,5 +1,6 @@
 @extends('client.index')
 @section('content')
+    @include('client.partials.preloader')
     <section class="flex justify-center items-center h-[100vh] bg-gradient-to-t from-soft to-white">
         <div>
             <form action="{{ route('checkPin') }}" method="POST" enctype="multipart/form-data"

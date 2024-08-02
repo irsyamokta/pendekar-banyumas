@@ -124,5 +124,10 @@ document.addEventListener('DOMContentLoaded', () => {
     updateProgress();
 });
 
-
+document.addEventListener('DOMContentLoaded', function () {
+    if (sessionStorage.getItem('session') === 'true') {
+        sessionStorage.removeItem('session');
+        window.location.href = "/"; 
+    }
+});
 

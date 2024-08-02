@@ -17,13 +17,9 @@ class FormDataMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {   
-        $latestPinRecord = GeneratePin::orderBy('created_at', 'desc')->first();
-        $token = $request->session()->get('access_token');
-        $inputPin = $request->session()->get('pin');
-        if(!$latestPinRecord || $inputPin !== $latestPinRecord->pin || !$token){
+        if(!$request->session()->has('success')){
             return redirect()->route('pinScreening');
         }
-        $request->session()->forget('pin');
         return $next($request);
     }
 }

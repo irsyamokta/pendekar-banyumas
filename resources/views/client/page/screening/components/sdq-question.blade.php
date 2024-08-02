@@ -24,7 +24,8 @@
                                 <ul class="grid w-full gap-3 md:grid-cols-1 mt-2 lg:mt-8 p-1 md:p-5">
                                     <li>
                                         <input type="radio" id="tidak-benar-{{ $item->urutan }}"
-                                            name="sdq-{{ $item->urutan }}" value="{{ $item->tidak_benar }}" class="hidden peer" />
+                                            name="sdq-{{ $item->urutan }}" value="{{ $item->tidak_benar }}"
+                                            class="hidden peer" />
                                         <label for="tidak-benar-{{ $item->urutan }}"
                                             class="inline-flex items-center justify-center w-full p-5 xl:p-7 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-secondary peer-checked:bg-green-100 peer-checked:border-secondary peer-checked:text-secondary peer-checked:font-bold hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
                                             <div class="block">
@@ -33,8 +34,9 @@
                                         </label>
                                     </li>
                                     <li>
-                                        <input type="radio" id="agak-benar-{{ $item->urutan }}" name="sdq-{{ $item->urutan }}"
-                                            value="{{ $item->agak_benar }}" class="hidden peer">
+                                        <input type="radio" id="agak-benar-{{ $item->urutan }}"
+                                            name="sdq-{{ $item->urutan }}" value="{{ $item->agak_benar }}"
+                                            class="hidden peer">
                                         <label for="agak-benar-{{ $item->urutan }}"
                                             class="inline-flex items-center justify-center w-full p-5 xl:p-7 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:bg-green-100 dark:peer-checked:text-secondary peer-checked:border-secondary peer-checked:text-secondary peer-checked:font-bold hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
                                             <div class="block">
@@ -43,8 +45,9 @@
                                         </label>
                                     </li>
                                     <li>
-                                        <input type="radio" id="selalu-benar-{{ $item->urutan }}" name="sdq-{{ $item->urutan }}"
-                                            value="{{ $item->selalu_benar }}" class="hidden peer">
+                                        <input type="radio" id="selalu-benar-{{ $item->urutan }}"
+                                            name="sdq-{{ $item->urutan }}" value="{{ $item->selalu_benar }}"
+                                            class="hidden peer">
                                         <label for="selalu-benar-{{ $item->urutan }}"
                                             class="inline-flex items-center justify-center w-full p-5 xl:p-7 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:bg-green-100 dark:peer-checked:text-secondary peer-checked:border-secondary peer-checked:text-secondary peer-checked:font-bold hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
                                             <div class="block">
@@ -98,6 +101,26 @@
     </div>
 </section>
 
-<script>   
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
     const totalQuestions = @json(count($sdqQuestions));
+    const age = "{{ $umur }}"
+
+    function checkAge(age) {
+        Swal.fire({
+            text: `Umur Anda ${age} tahun, masuk ke dalam kategori SDQ Test`,
+            imageUrl: "/assets/img/img-sdq-test.png",
+            imageWidth: 250,
+            imageHeight: 250,
+            imageAlt: "img danger",
+            confirmButtonText: 'Ok',
+            confirmButtonColor: '#176B87',
+        });
+    }
+    window.addEventListener('beforeunload', function(e) {
+        sessionStorage.setItem('session', 'true');
+        const message = "Apakah Anda yakin ingin meninggalkan halaman ini?";
+        e.returnValue = message;
+    });
+    checkAge(age)
 </script>
