@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\GeneratePin;
 use App\Models\InstrumenSDQ;
+use App\Models\InstrumenSRQ;
 use App\Models\Peserta;
 use Exception;
 use Carbon\Carbon;
@@ -113,7 +114,7 @@ class TestController extends Controller
             $request->session()->put('token', $peserta->token);
             $request->session()->regenerate();
             session()->keep('success');
-            return redirect()->route('sdqQuestions')->with('success', 'Berhasil mengisi data diri');
+            return redirect()->route('questions')->with('success', 'Berhasil mengisi data diri');
 
         }catch(\Illuminate\Validation\ValidationException $e){
             session()->keep('success');
@@ -126,7 +127,7 @@ class TestController extends Controller
         }
     }
 
-    public function sdqQuestions(Request $request)
+    public function questions(Request $request)
     {   
 
         $token = $request->session()->get('token');
@@ -144,14 +145,17 @@ class TestController extends Controller
         $tanggalLahirCarbon = Carbon::createFromFormat('d/m/Y', $tanggalLahir);
         $umur = $tanggalLahirCarbon->age;
 
+        $sdqQuestions = collect();
+        $srqQuestions = collect();
+
         if ($umur >= 4 && $umur <= 10) {
             $sdqQuestions = InstrumenSDQ::where('kategori', '4-10 Tahun')->get();
         } elseif ($umur >= 11 && $umur <= 18) {
             $sdqQuestions = InstrumenSDQ::where('kategori', '11-18 Tahun')->get();
         } else {
-            abort(404);
+            $srqQuestions = InstrumenSRQ::all();
         }
 
-        return view('client.page.screening.page.questions', compact('sdqQuestions', 'umur'));
+        return view('client.page.screening.page.questions', compact('sdqQuestions', 'srqQuestions', 'umur'));
     }
 }
