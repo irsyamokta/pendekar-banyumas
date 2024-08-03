@@ -259,6 +259,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const container = document.getElementById("srq-container")
             const newCard = document.createElement('div')
             const newQuestionCount = container.getElementsByClassName('srq-question').length + 1
+            if (questionsAdd) {
+                return
+            }
             newCard.className = 'srq-question rounded-sm border border-stroke bg-white px-7.5 py-4 shadow-default dark:border-strokedark dark:bg-boxdark'
             newCard.innerHTML = `
                         <div class="flex items-center justify-between">
@@ -277,11 +280,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     `
             container.appendChild(newCard)
-
+            questionsAdd = true
             newCard.querySelector('.delete-srq').addEventListener('click', function (e) {
                 e.preventDefault();
                 container.removeChild(newCard);
-            });
+                questionsAdd = false
+            })
         })
 
         document.querySelectorAll('.delete-srq').forEach(function (deleteButton) {
