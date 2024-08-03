@@ -41,6 +41,62 @@ class TestController extends Controller
     public function inputData(Request $request)
     {
         try{
+            $request->validate([
+                'nama_lengkap' => [
+                    'required',
+                    'string',
+                    'max:255',
+                    'regex:/^[a-zA-Z\s]+$/', 
+                ],
+                'tanggal_lahir' => 'required|string',
+                'jenis_kelamin' => 'required|string',
+                'nomor_hp' => [
+                    'required',
+                    'string',
+                    'max:15',
+                    'regex:/^[0-9]+$/', 
+                ],
+                'email' => 'required|email|max:255',
+                'alamat' => 'required|string|max:255|regex:/^[a-zA-Z0-9\s,.\-\/]+$/',
+                'kelurahan' => [
+                    'required',
+                    'string',
+                    'max:255',
+                    'regex:/^[a-zA-Z\s]+$/',
+                ],
+                'kecamatan' => [
+                    'required',
+                    'string',
+                    'max:255',
+                    'regex:/^[a-zA-Z\s]+$/', 
+                ],
+                'kabupaten' => [
+                    'required',
+                    'string',
+                    'max:255',
+                    'regex:/^[a-zA-Z\s]+$/', 
+                ],
+            ],[
+                'nama_lengkap.regex' => 'Nama lengkap hanya boleh mengandung huruf dan spasi.',
+                'jenis_kelamin' => 'Jenis kelamin harus dipilih.',
+                'nomor_hp.regex' => 'Nomor hp hanya boleh mengandung angka.',
+                'kelurahan.regex' => 'Kelurahan hanya boleh mengandung huruf dan spasi.',
+                'kecamatan.regex' => 'Kecamatan hanya boleh mengandung huruf dan spasi.',
+                'kabupaten.regex' => 'Kabupaten hanya boleh mengandung huruf dan spasi.',
+            ]);
+    
+            $tanggalLahir = new \DateTime($request->tanggal_lahir);
+            $today = new \DateTime();
+            $interval = $today->diff($tanggalLahir);
+            $umur = $interval->y;
+    
+            if ($umur < 4) {
+                session()->keep('success');
+                return redirect()->back()->withErrors([
+                    'tanggal_lahir' => 'Umur peserta minimal 4 tahun.',
+                ])->withInput();
+            }
+
             $peserta = new Peserta();
             $peserta->nama_lengkap = $request->nama_lengkap;
             $peserta->tanggal_lahir = $request->tanggal_lahir;
@@ -55,11 +111,18 @@ class TestController extends Controller
 
             $peserta->save();
             $request->session()->put('token', $peserta->token);
-            $request->session()->regenerate(); 
+            $request->session()->regenerate();
+            session()->keep('success');
             return redirect()->route('sdqQuestions')->with('success', 'Berhasil mengisi data diri');
 
+        }catch(\Illuminate\Validation\ValidationException $e){
+            session()->keep('success');
+            return redirect()->back()->withErrors($e->errors())->withInput();
         }catch(Exception $e){
-            return redirect()->back()->with('error', 'Ooppss... Terjadi kesalahan');
+            session()->keep('success');
+            return redirect()->back()->withErrors([
+                'general' => 'Terjadi kesalahan saat memproses data. Silakan coba lagi.',
+            ])->withInput();
         }
     }
 

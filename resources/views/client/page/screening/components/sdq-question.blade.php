@@ -121,6 +121,7 @@
         sessionStorage.setItem('session', 'true');
         const message = "Apakah Anda yakin ingin meninggalkan halaman ini?";
         e.returnValue = message;
+        return message;
     });
     checkAge(age)
 </script>
