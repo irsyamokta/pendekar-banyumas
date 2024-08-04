@@ -14,7 +14,7 @@ use Exception;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 
-class TestController extends Controller
+class ScreeningController extends Controller
 {
     public function inputPin()
     {   

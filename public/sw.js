@@ -11,7 +11,8 @@ self.addEventListener("install", function (event) {
 
 const filesToCache = [
     '/',
-    '/offline.html'
+    '/img-offline.png',
+    '/offline.html',
 ];
 
 const checkResponse = function (request) {

@@ -15,7 +15,7 @@
                 <form id="sdq-form" action="{{ route('submitSDQ') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @foreach ($sdqQuestions as $index => $item)
-                        <div class="hidden duration-700 ease-in-out"
+                        <div class="hidden duration-100"
                             data-carousel-item="{{ $index === 0 ? 'active' : '' }}">
                             <div class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
                                 <p
@@ -27,7 +27,7 @@
                                                 value="SDQ {{ $item->kategori }}"></span>
                                         <input type="radio" id="tidak-benar-{{ $item->urutan }}"
                                             name="sdq-{{ $item->urutan }}" value="{{ $item->tidak_benar }}"
-                                            class="hidden peer" />
+                                            class="hidden peer" required/>
                                         <label for="tidak-benar-{{ $item->urutan }}"
                                             class="inline-flex items-center justify-center w-full p-5 xl:p-7 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-secondary peer-checked:bg-green-100 peer-checked:border-secondary peer-checked:text-secondary peer-checked:font-bold hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
                                             <div class="block">

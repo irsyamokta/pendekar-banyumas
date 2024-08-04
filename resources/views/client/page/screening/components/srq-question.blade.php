@@ -15,11 +15,10 @@
                 <form id="srq-form" action="{{ route('submitSRQ') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @foreach ($srqQuestions as $index => $item)
-                        <div class="hidden duration-700 ease-in-out"
+                        <div class="hidden duration-100"
                             data-carousel-item="{{ $index === 0 ? 'active' : '' }}">
                             <div class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                                <p
-                                    class="text-sm md:text-lg h-20 lg:h-0 xl:h-10 lg:text-sm xl:md:text-lg text-center font-medium">
+                                <p class="text-sm md:text-lg h-20 lg:h-0 xl:h-10 lg:text-sm xl:md:text-lg text-center font-medium">
                                     {{ $item->pertanyaan }}</p>
                                 <ul class="grid w-full gap-3 md:grid-cols-1 mt-2 lg:mt-8 p-1 md:p-5">
                                     <li>
@@ -27,7 +26,7 @@
                                             value="SRQ"></span>
                                         <input type="radio" id="ya-{{ $item->urutan }}"
                                             name="srq-{{ $item->urutan }}" value="1"
-                                            class="hidden peer" />
+                                            class="hidden peer" required/>
                                         <label for="ya-{{ $item->urutan }}"
                                             class="inline-flex items-center justify-center w-full p-5 xl:p-7 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-secondary peer-checked:bg-green-100 peer-checked:border-secondary peer-checked:text-secondary peer-checked:font-bold hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
                                             <div class="block">
