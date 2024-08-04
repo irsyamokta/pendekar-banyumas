@@ -12,7 +12,7 @@
         </div>
         <div id="controls-carousel" class="relative w-full mt-10 lg:mt-0 xl:mt-10" data-carousel="static">
             <div class="relative h-96 lg:h-80 xl:h-100 overflow-hidden rounded-lg">
-                <form id="sdq-form" action="" method="POST" enctype="multipart/form-data">
+                <form id="srq-form" action="{{ route('submitSRQ') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @foreach ($srqQuestions as $index => $item)
                         <div class="hidden duration-700 ease-in-out"
@@ -23,10 +23,12 @@
                                     {{ $item->pertanyaan }}</p>
                                 <ul class="grid w-full gap-3 md:grid-cols-1 mt-2 lg:mt-8 p-1 md:p-5">
                                     <li>
-                                        <input type="radio" id="tidak-benar-{{ $item->urutan }}"
-                                            name="sdq-{{ $item->urutan }}" value="1"
+                                        <span class="hidden"><input type="text" name="test_type"
+                                            value="SRQ"></span>
+                                        <input type="radio" id="ya-{{ $item->urutan }}"
+                                            name="srq-{{ $item->urutan }}" value="1"
                                             class="hidden peer" />
-                                        <label for="tidak-benar-{{ $item->urutan }}"
+                                        <label for="ya-{{ $item->urutan }}"
                                             class="inline-flex items-center justify-center w-full p-5 xl:p-7 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-secondary peer-checked:bg-green-100 peer-checked:border-secondary peer-checked:text-secondary peer-checked:font-bold hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
                                             <div class="block">
                                                 <div class="w-full">Ya</div>
@@ -34,10 +36,10 @@
                                         </label>
                                     </li>
                                     <li>
-                                        <input type="radio" id="agak-benar-{{ $item->urutan }}"
-                                            name="sdq-{{ $item->urutan }}" value="0"
+                                        <input type="radio" id="tidak-{{ $item->urutan }}"
+                                            name="srq-{{ $item->urutan }}" value="0"
                                             class="hidden peer">
-                                        <label for="agak-benar-{{ $item->urutan }}"
+                                        <label for="tidak-{{ $item->urutan }}"
                                             class="inline-flex items-center justify-center w-full p-5 xl:p-7 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:bg-green-100 dark:peer-checked:text-secondary peer-checked:border-secondary peer-checked:text-secondary peer-checked:font-bold hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
                                             <div class="block">
                                                 <div class="w-full">Tidak</div>
@@ -79,7 +81,7 @@
                 </button>
                 <button type="submit" id="finish-button"
                     class="hidden items-center justify-center h-full px-2 cursor-pointer group focus:outline-none"
-                    form="sdq-form">
+                    form="srq-form">
                     <span
                         class="inline-flex items-center justify-center w-30 h-15 md:w-30 md:h-15 lg:w-24 lg:h-12 xl:w-30 xl:h-15 rounded-full bg-gradient-to-t from-secondary to-accent p-2">
                         <span class="text-white dark:text-gray-800">Selesai</span>
@@ -92,8 +94,8 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    const totalQuestions = @json(count($srqQuestions));
-    const age = "{{ $umur }}"
+    let totalQuestions = @json(count($srqQuestions));
+    let age = "{{ $umur }}"
 
     function checkAge(age) {
         Swal.fire({
@@ -106,11 +108,20 @@
             confirmButtonColor: '#176B87',
         });
     }
+    let formSubmitting = false;
+
     window.addEventListener('beforeunload', function(e) {
-        sessionStorage.setItem('session', 'true');
-        const message = "Apakah Anda yakin ingin meninggalkan halaman ini?";
-        e.returnValue = message;
-        return message;
+        if (!formSubmitting) {
+            sessionStorage.setItem('session', 'true');
+            const message = "Apakah Anda yakin ingin meninggalkan halaman ini?";
+            e.returnValue = message;
+            return message;
+        }
     });
+
+    document.getElementById('finish-button').addEventListener('click', function() {
+        formSubmitting = true;
+    });
+
     checkAge(age)
 </script>

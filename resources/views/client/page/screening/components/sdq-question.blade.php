@@ -12,7 +12,7 @@
         </div>
         <div id="controls-carousel" class="relative w-full mt-10 lg:mt-0 xl:mt-10" data-carousel="static">
             <div class="relative h-96 lg:h-80 xl:h-100 overflow-hidden rounded-lg">
-                <form id="sdq-form" action="" method="POST" enctype="multipart/form-data">
+                <form id="sdq-form" action="{{ route('submitSDQ') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @foreach ($sdqQuestions as $index => $item)
                         <div class="hidden duration-700 ease-in-out"
@@ -23,6 +23,8 @@
                                     {{ $item->pertanyaan }}</p>
                                 <ul class="grid w-full gap-3 md:grid-cols-1 mt-2 lg:mt-8 p-1 md:p-5">
                                     <li>
+                                        <span class="hidden"><input type="text" name="test_type"
+                                                value="SDQ {{ $item->kategori }}"></span>
                                         <input type="radio" id="tidak-benar-{{ $item->urutan }}"
                                             name="sdq-{{ $item->urutan }}" value="{{ $item->tidak_benar }}"
                                             class="hidden peer" />
@@ -103,8 +105,8 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    const totalQuestions = @json(count($sdqQuestions));
-    const age = "{{ $umur }}"
+    let totalQuestions = @json(count($sdqQuestions));
+    let age = "{{ $umur }}"
 
     function checkAge(age) {
         Swal.fire({
@@ -117,11 +119,19 @@
             confirmButtonColor: '#176B87',
         });
     }
+    let formSubmitting = false;
+
     window.addEventListener('beforeunload', function(e) {
-        sessionStorage.setItem('session', 'true');
-        const message = "Apakah Anda yakin ingin meninggalkan halaman ini?";
-        e.returnValue = message;
-        return message;
+        if (!formSubmitting) {
+            sessionStorage.setItem('session', 'true');
+            const message = "Apakah Anda yakin ingin meninggalkan halaman ini?";
+            e.returnValue = message;
+            return message;
+        }
+    });
+
+    document.getElementById('finish-button').addEventListener('click', function() {
+        formSubmitting = true;
     });
     checkAge(age)
 </script>

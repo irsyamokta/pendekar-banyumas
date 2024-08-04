@@ -43,7 +43,9 @@ Route::prefix('/')->group( function () {
         Route::middleware(['isCorrectPin'])->group( function () {
             Route::get('/form-data', [TestController::class, 'formData'])->name('formData');
             Route::post('/form-data', [TestController::class, 'inputData'])->name('inputData');
-            Route::get('/test', [TestController::class, 'questions'])->name('questions');
+            Route::get('/test{token}', [TestController::class, 'questions'])->name('questions');
+            Route::post('/test/sdq', [TestController::class, 'sdqResponse'])->name('submitSDQ');
+            Route::post('/test/srq', [TestController::class, 'srqResponse'])->name('submitSRQ');
         });
     });
     Route::get('/mandiri-test', [HomepageController::class, 'mandiri'])->name('mandiri');

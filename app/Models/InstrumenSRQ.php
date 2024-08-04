@@ -16,4 +16,9 @@ class InstrumenSRQ extends Model
     protected $fillable = [
         'pertanyaan', 'urutan'
     ];
+
+    public function responses()
+    {
+        return $this->hasMany(SrqResponse::class, 'question_id', 'id_srq');
+    }
 }

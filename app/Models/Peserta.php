@@ -14,4 +14,13 @@ class Peserta extends Model
     protected $fillable = [
         'nama_lengkap', 'tanggal_lahir', 'jenis_kelamin', 'nomor_hp', 'email', 'alamat', 'kelurahan', 'kecamatan', 'kabupaten', 'token'
     ];
+
+    public function sdqResponses()
+    {
+        return $this->hasMany(SdqResponse::class, 'participant_id', 'id_peserta');
+    }
+    public function srqResponses()
+    {
+        return $this->hasMany(SrqResponse::class, 'participant_id', 'id_peserta');
+    }
 }

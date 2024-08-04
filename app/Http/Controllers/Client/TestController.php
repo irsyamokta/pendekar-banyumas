@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\GeneratePin;
 use App\Models\InstrumenSDQ;
 use App\Models\InstrumenSRQ;
+use App\Models\SDQResponse;
+use App\Models\SRQResponse;
 use App\Models\Peserta;
 use Exception;
 use Carbon\Carbon;
@@ -114,7 +116,7 @@ class TestController extends Controller
             $request->session()->put('token', $peserta->token);
             $request->session()->regenerate();
             session()->keep('success');
-            return redirect()->route('questions')->with('success', 'Berhasil mengisi data diri');
+            return redirect()->route('questions', $peserta->token)->with('success', 'Berhasil mengisi data diri');
 
         }catch(\Illuminate\Validation\ValidationException $e){
             session()->keep('success');
@@ -127,9 +129,9 @@ class TestController extends Controller
         }
     }
 
-    public function questions(Request $request)
+    public function questions(Request $request, $token)
     {   
-
+        session()->keep('success');
         $token = $request->session()->get('token');
         if (!$token) {
             abort(403, 'Unauthorized access');
@@ -157,5 +159,75 @@ class TestController extends Controller
         }
 
         return view('client.page.screening.page.questions', compact('sdqQuestions', 'srqQuestions', 'umur'));
+    }
+
+    public function sdqResponse(Request $request){
+        session()->keep('success');
+        $token = $request->session()->get('token');
+        if (!$token) {
+            abort(403, 'Unauthorized access');
+        }
+
+        $participant = Peserta::where('token', $token)->first();
+
+        if (!$participant) {
+            return redirect()->back()->with('error', 'Participant not found.');
+        }
+
+        $data = $request->all();
+        $testType = $request->input('test_type');
+        
+        foreach ($data as $key => $value) {
+            if (strpos($key, 'sdq-') === 0) {
+                $urutan = explode('-', $key)[1];
+                $question = InstrumenSDQ::where('urutan', $urutan)->first();
+                
+                if ($question) {
+                    SDQResponse::create([
+                        'participant_id' => $participant->id_peserta,
+                        'question_id' => $question->id_sdq,
+                        'score' => $value,
+                        'test_type' => $testType,
+                        'domain' => $question->domain,
+                    ]);
+                }
+            }
+        }
+        
+        return redirect()->route('homepage')->with('success', 'Responses saved successfully');
+    }
+    public function srqResponse(Request $request){
+        session()->keep('success');
+        $token = $request->session()->get('token');
+        if (!$token) {
+            abort(403, 'Unauthorized access');
+        }
+
+        $participant = Peserta::where('token', $token)->first();
+
+        if (!$participant) {
+            return redirect()->back()->with('error', 'Participant not found.');
+        }
+
+        $data = $request->all();
+        $testType = $request->input('test_type');
+        
+        foreach ($data as $key => $value) {
+            if (strpos($key, 'srq-') === 0) {
+                $urutan = explode('-', $key)[1];
+                $question = InstrumenSRQ::where('urutan', $urutan)->first();
+                
+                if ($question) {
+                    SRQResponse::create([
+                        'participant_id' => $participant->id_peserta,
+                        'question_id' => $question->id_srq,
+                        'test_type' => $testType,
+                        'score' => $value,
+                    ]);
+                }
+            }
+        }
+        
+        return redirect()->route('homepage')->with('success', 'Responses saved successfully');
     }
 }

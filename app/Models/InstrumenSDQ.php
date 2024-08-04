@@ -16,4 +16,9 @@ class InstrumenSDQ extends Model
     protected $fillable = [
         'pertanyaan', 'urutan', 'domain', 'kategori', 'tidak_benar', 'agak_benar', 'selalu_benar'
     ];
+
+    public function responses()
+    {
+        return $this->hasMany(SdqResponse::class, 'question_id', 'id_sdq');
+    }
 }
