@@ -11,6 +11,9 @@ use App\Models\SDQResponse;
 use App\Models\SRQResponse;
 use App\Models\DaftarPuskesmas;
 use Illuminate\Pagination\LengthAwarePaginator;
+use App\Mail\TestResultMail;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 use App\Models\Peserta;
 use Exception;
 use Carbon\Carbon;
@@ -307,6 +310,15 @@ class ScreeningController extends Controller
             }
         }
 
+        if ($request->session()->get('email_sent', false)) {
+            return $this->generateResultView($request, $participant, $img, $summary, $category);
+        }
+
+        $userEmail = $participant->email;
+        Mail::to($userEmail)->send(new TestResultMail($category, $img, $summary));
+
+        $request->session()->put('email_sent', true);
+
         $puskesmas = DaftarPuskesmas::getDummyData();
         $perPage = 10;
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
@@ -315,7 +327,21 @@ class ScreeningController extends Controller
             'path' => $request->url(),
             'query' => $request->query(),
         ]);
-        
+
+        return view('client.page.screening.page.result', ['puskesmas' => $paginator], compact('img', 'category', 'summary'));
+    }
+
+    private function generateResultView(Request $request, $participant, $img, $summary, $category)
+    {
+        $puskesmas = DaftarPuskesmas::getDummyData();
+        $perPage = 10;
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $currentItems = array_slice($puskesmas, ($currentPage - 1) * $perPage, $perPage);
+        $paginator = new LengthAwarePaginator($currentItems, count($puskesmas), $perPage, $currentPage, [
+            'path' => $request->url(),
+            'query' => $request->query(),
+        ]);
+
         return view('client.page.screening.page.result', ['puskesmas' => $paginator], compact('img', 'category', 'summary'));
     }
 }

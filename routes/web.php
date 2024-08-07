@@ -51,6 +51,7 @@ Route::prefix('/')->group( function () {
         });
         Route::get('/result', [ScreeningController::class, 'result'])->name('result');
     });
+    
     Route::prefix('/mandiri-test')->group( function () {
         Route::get('/panduan', [HomepageController::class, 'mandiri'])->name('mandiri');
         Route::get('/usia', [MandiriController::class, 'inputUsia'])->name('inputUsia');

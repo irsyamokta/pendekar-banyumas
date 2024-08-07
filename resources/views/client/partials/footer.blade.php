@@ -5,7 +5,7 @@
             <img src="{{ asset('assets/logo/logo-bms.png') }}" alt="logo-bms" class="w-10 md:w-12 2xl:w-17">
             <img src="{{ asset('assets/logo/logo-kemenkes.png') }}" alt="logo-kemenkes" class="w-10 md:w-12 2xl:w-17">
         </div>
-        <p class="text-xs md:text-sm md:px-30 2xl:text-lg 2xl:px-96 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis convallis enim, et aliquam dui. Nullam sed libero ex.</p>
+        <p class="text-xs md:text-sm md:px-30 2xl:text-lg 2xl:px-96 text-center">Bersama Pendekar Banyumas mewujudkan masyarakat yang lebih sehat secara mental dengan deteksi dini dan penanganan yang tepat</p>
         <hr class="w-full">
         <p class="text-[8px] lg:text-xs 2xl:text-[14px] mt-3 text-secondary font-semibold">Copyright © Pendekar Banyumas {{ date('Y') }}. All Right Reserves</p>
     </div>
