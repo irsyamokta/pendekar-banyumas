@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\GeneratePinController;
 use App\Http\Controllers\Admin\InstrumenController;
 use App\Http\Controllers\Client\HomepageController;
 use App\Http\Controllers\Client\ScreeningController;
+use App\Http\Controllers\Client\MandiriController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'verified', 'noCache'])->prefix('dashboard')->group(function () {
@@ -36,19 +37,30 @@ Route::middleware(['auth', 'verified', 'noCache'])->prefix('dashboard')->group(f
 Route::prefix('/')->group( function () {
     Route::get('/', [HomepageController::class, 'index'])->name('homepage');
     Route::prefix('/screening-test')->group( function () {
-        Route::get('/', [HomepageController::class, 'screening'])->name('screening');
+        Route::get('/panduan', [HomepageController::class, 'screening'])->name('screening');
         Route::get('/pin', [ScreeningController::class, 'inputPin'])->name('pinScreening');
         Route::post('/pin', [ScreeningController::class, 'checkPin'])->name('checkPin');
         Route::middleware(['isCorrectPin'])->group( function () {
             Route::get('/form-data', [ScreeningController::class, 'formData'])->name('formData');
             Route::post('/form-data', [ScreeningController::class, 'inputData'])->name('inputData');
-            Route::get('/test{token}', [ScreeningController::class, 'questions'])->name('questions');
-            Route::post('/test/sdq', [ScreeningController::class, 'sdqResponse'])->name('submitSDQ');
-            Route::post('/test/srq', [ScreeningController::class, 'srqResponse'])->name('submitSRQ');
         });
+        Route::middleware(['isTestQuestions'])->group( function () {
+            Route::get('/test', [ScreeningController::class, 'questions'])->name('screeningQuestions')->middleware(['noCache']);
+            Route::post('/test/sdq', [ScreeningController::class, 'sdqResponse'])->name('submitScreeningSDQ');
+            Route::post('/test/srq', [ScreeningController::class, 'srqResponse'])->name('submitScreeningSRQ');
+        });
+        Route::get('/result', [ScreeningController::class, 'result'])->name('result');
     });
-
-    Route::get('/mandiri-test', [HomepageController::class, 'mandiri'])->name('mandiri');
+    Route::prefix('/mandiri-test')->group( function () {
+        Route::get('/panduan', [HomepageController::class, 'mandiri'])->name('mandiri');
+        Route::get('/usia', [MandiriController::class, 'inputUsia'])->name('inputUsia');
+        Route::post('/usia', [MandiriController::class, 'checkUsia'])->name('checkUsia');
+        Route::get('/test', [MandiriController::class, 'questions'])->name('mandiriQuestions')->middleware(['noCache']);
+        Route::post('/result/sdq', [MandiriController::class, 'response'])->name('submitMandiriSDQ');
+        Route::post('/result/srq', [MandiriController::class, 'response'])->name('submitMandiriSRQ');
+        Route::get('/result/sdq', [MandiriController::class, 'response']);
+        Route::get('/result/srq', [MandiriController::class, 'response']);
+    });
 });
 
 require __DIR__.'/auth.php';

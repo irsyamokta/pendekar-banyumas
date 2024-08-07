@@ -14,6 +14,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'noCache' => \App\Http\Middleware\NoCache::class,
             'isCorrectPin' => \App\Http\Middleware\FormDataMiddleware::class,
+            'isTestQuestions' => \App\Http\Middleware\TestQuestionsMiddleware::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

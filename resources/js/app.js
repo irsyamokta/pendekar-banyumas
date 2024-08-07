@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
     const inputPin = document.getElementById('input_pin');
     const nomorHp = document.getElementById('nomor_hp');
+    const inputUsia = document.getElementById('input_usia');
     function handleInputPin(event) {
         event.target.value = event.target.value.replace(/[^0-9]/g, '');
         if (event.target.value.length > 6) {
@@ -41,6 +42,12 @@ document.addEventListener('DOMContentLoaded', () => {
             event.target.value = event.target.value.slice(0, 13);
         }
     }
+    function handleInputUsia(event) {
+        event.target.value = event.target.value.replace(/[^0-9]/g, '');
+        if (event.target.value.length > 6) {
+            event.target.value = event.target.value.slice(0, 2);
+        }
+    }
 
     if (inputPin) {
         inputPin.addEventListener('input', handleInputPin);
@@ -48,6 +55,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (nomorHp) {
         nomorHp.addEventListener('input', handleInputNomorHp);
+    }
+    if (inputUsia) {
+        inputUsia.addEventListener('input', handleInputUsia);
     }
 })
 
@@ -127,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', function () {
     if (sessionStorage.getItem('session') === 'true') {
         sessionStorage.removeItem('session');
-        window.location.href = "/"; 
+        window.location.href = "panduan"; 
     }
 });
 

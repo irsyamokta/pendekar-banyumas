@@ -12,7 +12,7 @@
 
 <body class="bg-gradient-to-t from-[#B4D4FF] to-white">
     <section class="flex flex-col justify-center items-center text-center h-[100vh]">
-        <img src="/public/assets/img/img-404.png" alt="not found" class="w-56 md:w-96">
+        <img src="{{ asset('assets/img/img-404.png') }}" alt="not found" class="w-56 md:w-96">
         <h1 class="text-2xl font-bold mt-2">Halaman Tidak Ditemukan</h1>
         <p class="text-sm xl:text-base px-5 lg:px-28 mt-2 md:w-1/2">Halaman yang Anda cari mungkin diganti namanya, dihapus, atau mungkin tidak pernah
             ada di situs ini</p>

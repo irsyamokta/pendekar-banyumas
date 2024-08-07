@@ -13,13 +13,15 @@ class HomepageController extends Controller
         return view('client.page.homepage.homepage');
     }
 
-    public function screening()
+    public function screening(Request $request)
     {
+        $request->session()->flush();
         return view('client.page.screening.page.screening');
     }
 
-    public function mandiri()
+    public function mandiri(Request $request)
     {
-        return view('client.page.mandiri.mandiri');
+        $request->session()->flush();
+        return view('client.page.mandiri.page.mandiri');
     }
 }

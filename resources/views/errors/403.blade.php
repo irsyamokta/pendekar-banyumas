@@ -12,7 +12,7 @@
 
 <body class="bg-gradient-to-t from-[#B4D4FF] to-white">
     <section class="flex flex-col justify-center items-center text-center h-[100vh]">
-        <img src="/public/assets/img/img-403.png" alt="not found" class="w-56 md:w-80">
+        <img src="{{ asset('assets/img/img-403.png') }}" alt="not found" class="w-56 md:w-80">
         <h1 class="text-2xl font-bold mt-2">Akses Dibatasi</h1>
         <p class="text-sm xl:text-base px-5 lg:px-28 mt-2 md:w-1/2">Halaman yang ingin Anda buka dilarang keras karena alasan tertentu</p>
         <a href="/" class="px-4 py-3 bg-[#176B87] mt-5 rounded-xl text-white">Kembali ke Homepage</a>

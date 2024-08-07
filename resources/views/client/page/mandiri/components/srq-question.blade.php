@@ -12,7 +12,7 @@
         </div>
         <div id="controls-carousel" class="relative w-full mt-10 lg:mt-0 xl:mt-10" data-carousel="static">
             <div class="relative h-96 lg:h-80 xl:h-100 overflow-hidden rounded-lg">
-                <form id="srq-form" action="{{ route('submitScreeningSRQ') }}" method="POST" enctype="multipart/form-data">
+                <form id="srq-form" action="{{ route('submitMandiriSRQ') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @foreach ($srqQuestions as $index => $item)
                         <div class="hidden duration-100"

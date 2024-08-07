@@ -9,6 +9,8 @@ use App\Models\InstrumenSDQ;
 use App\Models\InstrumenSRQ;
 use App\Models\SDQResponse;
 use App\Models\SRQResponse;
+use App\Models\DaftarPuskesmas;
+use Illuminate\Pagination\LengthAwarePaginator;
 use App\Models\Peserta;
 use Exception;
 use Carbon\Carbon;
@@ -116,7 +118,7 @@ class ScreeningController extends Controller
             $request->session()->put('token', $peserta->token);
             $request->session()->regenerate();
             session()->keep('success');
-            return redirect()->route('questions', $peserta->token)->with('success', 'Berhasil mengisi data diri');
+            return redirect()->route('screeningQuestions', $peserta->token)->with('success', 'Berhasil mengisi data diri');
 
         }catch(\Illuminate\Validation\ValidationException $e){
             session()->keep('success');
@@ -129,7 +131,7 @@ class ScreeningController extends Controller
         }
     }
 
-    public function questions(Request $request, $token)
+    public function questions(Request $request)
     {   
         session()->keep('success');
         $token = $request->session()->get('token');
@@ -171,7 +173,7 @@ class ScreeningController extends Controller
         $participant = Peserta::where('token', $token)->first();
 
         if (!$participant) {
-            return redirect()->back()->with('error', 'Participant not found.');
+            abort(403, 'Unauthorized access');
         }
 
         $data = $request->all();
@@ -193,8 +195,8 @@ class ScreeningController extends Controller
                 }
             }
         }
-        
-        return redirect()->route('homepage')->with('success', 'Responses saved successfully');
+        $request->session()->forget('success');
+        return redirect()->route('result', $participant->token)->with('done', 'Responses saved successfully');
     }
     public function srqResponse(Request $request){
         session()->keep('success');
@@ -206,7 +208,7 @@ class ScreeningController extends Controller
         $participant = Peserta::where('token', $token)->first();
 
         if (!$participant) {
-            return redirect()->back()->with('error', 'Participant not found.');
+            abort(403, 'Unauthorized access');
         }
 
         $data = $request->all();
@@ -228,6 +230,92 @@ class ScreeningController extends Controller
             }
         }
         
-        return redirect()->route('homepage')->with('success', 'Responses saved successfully');
+        $request->session()->forget('success');
+        return redirect()->route('result', $participant->token)->with('done', 'Responses saved successfully');
+    }
+
+    public function result(Request $request){
+        $token = $request->session()->get('token');
+        if (!$token) {
+            abort(403, 'Unauthorized access');
+        }
+
+        $participant = Peserta::where('token', $token)->first();
+
+        if (!$participant) {
+            abort(403, 'Unauthorized access');
+        }
+
+        $tanggalLahir = $participant->tanggal_lahir;
+        $tanggalLahirCarbon = Carbon::createFromFormat('d/m/Y', $tanggalLahir);
+        $umur = $tanggalLahirCarbon->age;
+
+        if($umur <= 18){
+            $responseSDQ = SDQResponse::where('participant_id', $participant->id_peserta)->get();
+    
+            $domains = ['E' => 0, 'C' => 0, 'H' => 0, 'P' => 0];
+    
+            foreach ($responseSDQ as $response) {
+                if (array_key_exists($response->domain, $domains)) {
+                    $domains[$response->domain] += $response->score;
+                }
+            }
+    
+            $totalDifficultyScore = $domains['E'] + $domains['C'] + $domains['H'] + $domains['P'];
+    
+            if ($umur < 11) {
+                if ($totalDifficultyScore >= 0 && $totalDifficultyScore <= 13) {
+                    $category = 'Normal';
+                    $img = 'Normal';
+                    $summary = 'Nilai normal menunjukkan bahwa anak atau remaja tersebut tidak memiliki masalah perilaku dan emosi yang signifikan. Kategori ini tidak memerlukan pemeriksaan lanjutan.';
+                } elseif ($totalDifficultyScore >= 14 && $totalDifficultyScore <= 15) {
+                    $category = 'Boderline';
+                    $img = 'Boderline';
+                    $summary = 'Nilai ambang (boderline) mengindikasikan bahwa anak atau remaja tersebut berpotensi mengalami masalah emosi dan perilaku. Kategori ini juga harus dianggap sebagai kasus yang membutuhkan pemeriksaan lanjutan.';
+                } elseif ($totalDifficultyScore >= 16 && $totalDifficultyScore <= 40) {
+                    $category = 'Abnormal';
+                    $img = 'Abnormal';
+                    $summary = "Nilai abnormal menunjukkan adanya 'kasus' yang signifikan pada anak atau remaja dengan masalah perilaku dan emosi. Kategori ini memerlukan perhatian utama dan harus dilakukan pemeriksaan lanjutan.";
+                }
+            } else {
+                if ($totalDifficultyScore >= 0 && $totalDifficultyScore <= 15) {
+                    $category = 'Normal';
+                    $img = 'Normal';
+                    $summary = 'Nilai normal menunjukkan bahwa anak atau remaja tersebut tidak memiliki masalah perilaku dan emosi yang signifikan. Kategori ini tidak memerlukan pemeriksaan lanjutan.';
+                } elseif ($totalDifficultyScore >= 16 && $totalDifficultyScore <= 19) {
+                    $category = 'Boderline';
+                    $img = 'Boderline';
+                    $summary = 'Nilai ambang (boderline) mengindikasikan bahwa anak atau remaja tersebut berpotensi mengalami masalah emosi dan perilaku. Kategori ini juga harus dianggap sebagai kasus yang membutuhkan pemeriksaan lanjutan.';
+                } elseif ($totalDifficultyScore >= 20 && $totalDifficultyScore <= 40) {
+                    $category = 'Abnormal';
+                    $img = 'Abnormal';
+                    $summary = "Nilai abnormal menunjukkan adanya 'kasus' yang signifikan pada anak atau remaja dengan masalah perilaku dan emosi. Kategori ini memerlukan perhatian utama dan harus dilakukan pemeriksaan lanjutan.";
+                }
+            }
+        } else {
+            $responseSRQ = SRQResponse::where('participant_id', $participant->id_peserta)->get();
+            $responseYes = $responseSRQ->sum('score');
+            
+            if ($responseYes >= 8) {
+                $category = 'Butuh Dukungan Lebih Lanjut';
+                $img = 'Psyco';
+                $summary = 'Hasil menunjukkan bahwa Anda membutuhkan dukungan lebih lanjut.';
+            } else {
+                $category = 'Tidak Butuh Dukungan Lebih Lanjut';
+                $img = 'Happy';
+                $summary = 'Hasil menunjukkan bahwa Anda tidak membutuhkan dukungan lebih lanjut.';
+            }
+        }
+
+        $puskesmas = DaftarPuskesmas::getDummyData();
+        $perPage = 10;
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $currentItems = array_slice($puskesmas, ($currentPage - 1) * $perPage, $perPage);
+        $paginator = new LengthAwarePaginator($currentItems, count($puskesmas), $perPage, $currentPage, [
+            'path' => $request->url(),
+            'query' => $request->query(),
+        ]);
+        
+        return view('client.page.screening.page.result', ['puskesmas' => $paginator], compact('img', 'category', 'summary'));
     }
 }

@@ -11,7 +11,7 @@
                 <li class="text-xs md:text-sm xl:text-base 2xl:text-lg delay-[700ms] duration-[400ms] taos:scale-[0.6] taos:opacity-0 [animation-iteration-count:infinite]" data-taos-offset="0">Tidak ada jawaban benar atau salah dan tidak ada batasan waktu pengerjaan.</li>
                 <li class="text-xs md:text-sm xl:text-base 2xl:text-lg delay-[700ms] duration-[400ms] taos:scale-[0.6] taos:opacity-0 [animation-iteration-count:infinite]" data-taos-offset="0">Hasil tes dapat dilihat setelah mengisi semua pertanyaan dengan lengkap.</li>
             </ul>
-            <a href="" class="mt-5 md:mt-8 w-30 2xl:w-40 2xl:h-12 2xl:text-lg py-2 bg-gradient-to-r from-accent to-secondary text-sm text-center text-white rounded-[30px] delay-[700ms] duration-[400ms] taos:scale-[0.6] taos:opacity-0 [animation-iteration-count:infinite]" data-taos-offset="0">Mulai Tes</a>
+            <a href="{{ route('inputUsia') }}" class="mt-5 md:mt-8 w-30 2xl:w-40 2xl:h-12 2xl:text-lg py-2 bg-gradient-to-r from-accent to-secondary text-sm text-center text-white rounded-[30px] delay-[700ms] duration-[400ms] taos:scale-[0.6] taos:opacity-0 [animation-iteration-count:infinite]" data-taos-offset="0">Mulai Tes</a>
         </div>
         <div>
             <img src="{{ asset('assets/img/img-mandiri.png') }}" alt="image hero" class="w-56 md:w-96 xl:w-[550px] 2xl:w-[600px] mt-5 delay-[700ms] duration-[400ms] taos:scale-[0.6] taos:opacity-0 [animation-iteration-count:infinite]" data-taos-offset="0">
