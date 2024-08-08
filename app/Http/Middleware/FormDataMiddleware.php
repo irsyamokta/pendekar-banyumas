@@ -17,7 +17,9 @@ class FormDataMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {   
-        if(!$request->session()->has('success')){
+        $latestPinRecord = GeneratePin::orderBy('created_at', 'desc')->first();
+
+        if($latestPinRecord && $latestPinRecord->status === 'inactive'){
             return redirect()->route('pinScreening');
         }
         return $next($request);

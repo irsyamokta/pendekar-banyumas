@@ -13,12 +13,6 @@ class DashboardController extends Controller
     public function index()
     {
         $pin = GeneratePin::all()->sortDesc()->take(1);
-
-        // if($pin->isEmpty()){
-        //     $pin = [null];
-        //     return view('admin.dashboard.menu.dashboard', compact('pin'));
-        // }
-
         return view('admin.dashboard.menu.dashboard', compact('pin'));
     }
 
