@@ -1,19 +1,35 @@
 document.addEventListener('DOMContentLoaded', () => {
     const generate = document.getElementById('generate');
-    const pin = document.getElementById('pin');
     const inputPin = document.getElementById('input-pin');
 
-    generate.addEventListener('click', () => {
+    function generatePin() {
         const newPin = Math.floor(100000 + Math.random() * 900000).toString().padStart(6, '0');
         localStorage.setItem('generatedPin', newPin);
-        location.reload();
-    });
+        inputPin.value = newPin;
+    }
 
     if (localStorage.getItem('generatedPin')) {
         const savedPin = localStorage.getItem('generatedPin');
         inputPin.value = savedPin;
+        generate.textContent = 'Akhiri';
+        generate.classList.add('bg-red-900');
     }
-})
+
+    generate.addEventListener('click', () => {
+        if (generate.textContent === 'Mulai') {
+            generatePin();
+            generate.textContent = 'Akhiri';
+            generate.classList.remove('bg-secondary');
+            generate.classList.add('bg-red-900');
+        } else {
+            localStorage.removeItem('generatedPin');
+            inputPin.value = '';
+            generate.textContent = 'Mulai';
+            generate.classList.remove('bg-red-900');
+            generate.classList.add('bg-secondary');
+        }
+    });
+});
 
 document.querySelectorAll('.delete-confirm').forEach((button) => {
     button.addEventListener('click', function (e) {
@@ -276,7 +292,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             </div>
                         </div>
                         <div class="mt-4">
-                            <textarea name="pertanyaan" rows="3" class="w-full overflow-auto dark:bg-transparent" required></textarea>
+                            <textarea name="pertanyaan" rows="3" placeholder="Tulis pertanyaan..." class="w-full overflow-auto dark:bg-transparent" required></textarea>
                         </div>
                     `
             container.appendChild(newCard)

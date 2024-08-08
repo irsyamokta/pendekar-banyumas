@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'verified', 'noCache'])->prefix('dashboard')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-    Route::post('/', [GeneratePinController::class, 'store'])->name('generatePin');
+    Route::post('/generate', [GeneratePinController::class, 'store'])->name('generatePin');
+    Route::post('/update-pin-status', [GeneratePinController::class, 'updatePinStatus'])->name('updatePinStatus');
     
     Route::get('/sdq', [DashboardController::class, 'sdq'])->name('sdq');
     Route::get('/sdq/first', [DashboardController::class, 'sdqFirst'])->name('sdqFirst');

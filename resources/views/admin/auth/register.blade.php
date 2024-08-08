@@ -25,7 +25,7 @@
                         <label for="nama_lengkap" class="text-sm">Nama Lengkap</label>
                         <br>
                         <input type="text" name="nama_lengkap" value="{{ old('nama_lengkap') }}" required autofocus
-                            autocomplete="nema_lengkap" class="rounded-[30px] w-[250px] lg:w-[350px]">
+                            autocomplete="nama_lengkap" placeholder="John Doe" class="rounded-[30px] w-[250px] lg:w-[350px] placeholder:text-xs placeholder:text-[#C4C4C4]">
                         @if ($errors->any())
                             <p class="mt-3 text-red-500 text-xs">{{ $errors->first('nama_lengkap') }}</p>
                         @endif
@@ -34,13 +34,13 @@
                         <label for="email" class="text-sm">Email</label>
                         <br>
                         <input type="email" name="email" value="{{ old('email') }}" required autofocus
-                            autocomplete="email" class="rounded-[30px] w-[250px] lg:w-[350px]">
+                            autocomplete="email" placeholder="example@gmail.com" class="rounded-[30px] w-[250px] lg:w-[350px] placeholder:text-xs placeholder:text-[#C4C4C4]">
                     </div>
                     <div class="mb-5">
                         <label for="password" class="text-sm">Password</label>
                         <br>
-                        <input type="password" name="password" required autocomplete="current-password"
-                            class="rounded-[30px] w-[250px] lg:w-[350px]">
+                        <input type="password" name="password" required autocomplete="current-password" placeholder="Minimal 8 karakter terdiri dari huruf, angka, dan simbol"
+                            class="rounded-[30px] w-[250px] lg:w-[350px] placeholder:text-xs placeholder:text-[#C4C4C4]">
                         @if ($errors->has('password'))
                             <p class="mt-3 text-red-500 text-xs">{{ $errors->first('password') }}</p>
                         @endif
@@ -48,8 +48,8 @@
                     <div class="mb-5">
                         <label for="password_confirmation" class="text-sm">Konfirmasi Password</label>
                         <br>
-                        <input type="password" name="password_confirmation" required autocomplete="current-password"
-                            class="rounded-[30px] w-[250px] lg:w-[350px]">
+                        <input type="password" name="password_confirmation" required autocomplete="current-password" placeholder="Konfirmasi Password"
+                            class="rounded-[30px] w-[250px] lg:w-[350px] placeholder:text-xs placeholder:text-[#C4C4C4]">
                         @if ($errors->has('password_confirmation'))
                             <p class="mt-3 text-red-500 text-xs">{{ $errors->first('password_confirmation') }}</p>
                         @endif

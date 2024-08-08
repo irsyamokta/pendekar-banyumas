@@ -32,7 +32,7 @@
                 </div>
                 <span>
                     <button type="submit"
-                        class="w-[80px] h-[30px] md:w-[100px] text-sm md:h-[35px] rounded-[30px] bg-secondary text-primary hover:bg-active duration-300 ease-linear dark:bg-meta-4 hover:dark:bg-primary hover:dark:text-secondary">Simpan</button>
+                        class="w-[80px] h-[30px] md:w-[100px] text-sm md:h-[35px] rounded-[30px] bg-secondary text-primary duration-300 ease-linear dark:bg-white dark:text-secondary hover:text-white hover:bg-active dark:hover:bg-meta-4 dark:hover:text-white">Simpan</button>
                 </span>
             </div>
         </div>
@@ -45,7 +45,7 @@
     <div class="mt-4">
         <div class="flex justify-center">
             <a id="add-sdq-first"
-                class="flex justify-center items-center gap-1 text-sm  w-[180px] h-[35px] md:w-[200px] md:h-[40px] cursor-pointer rounded-[30px] bg-secondary text-primary hover:bg-active hover:text-primary duration-300 ease-linear dark:bg-meta-4 hover:dark:bg-primary hover:dark:text-secondary"><span>Tambah Pertanyaan</span></a>
+                class="flex justify-center items-center gap-1 text-sm  w-[180px] h-[35px] md:w-[200px] md:h-[40px] cursor-pointer rounded-[30px] bg-secondary text-primary duration-300 ease-linear dark:bg-white dark:text-secondary hover:text-white hover:bg-active dark:hover:bg-meta-4 dark:hover:text-white"><span>Tambah Pertanyaan</span></a>
         </div>
     </div>
 </form>

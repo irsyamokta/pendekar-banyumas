@@ -9,7 +9,7 @@
             </div>
             <span>
                 <a href="{{ route('sdqFirst') }}"><button 
-                    class="w-[80px] h-[30px] md:w-[100px] md:h-[35px] text-sm rounded-[30px] bg-secondary text-primary hover:bg-active duration-300 ease-linear dark:bg-meta-4 hover:dark:bg-primary hover:dark:text-secondary">Lihat</button></a>
+                    class="w-[80px] h-[30px] md:w-[100px] md:h-[35px] text-sm rounded-[30px] bg-secondary text-primary duration-300 ease-linear dark:bg-white dark:text-secondary hover:text-white hover:bg-active dark:hover:bg-meta-4 dark:hover:text-white">Lihat</button></a>
             </span>
         </div>
     </div>
@@ -23,7 +23,7 @@
             </div>
             <span>
                 <a href="{{ route('sdqSecond') }}"><button 
-                    class="w-[80px] h-[30px] md:w-[100px] md:h-[35px] text-sm rounded-[30px] bg-secondary text-primary hover:bg-active duration-300 ease-linear dark:bg-meta-4 hover:dark:bg-primary hover:dark:text-secondary">Lihat</button></a>
+                    class="w-[80px] h-[30px] md:w-[100px] md:h-[35px] text-sm rounded-[30px] bg-secondary text-primary duration-300 ease-linear dark:bg-white dark:text-secondary hover:text-white hover:bg-active dark:hover:bg-meta-4 dark:hover:text-white">Lihat</button></a>
             </span>
         </div>
     </div>

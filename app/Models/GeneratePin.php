@@ -12,6 +12,6 @@ class GeneratePin extends Model
     protected $table = 'generate_pins';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'pin'
+        'pin', 'status'
     ];
 }

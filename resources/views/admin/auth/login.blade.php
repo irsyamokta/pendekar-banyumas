@@ -28,7 +28,7 @@
                     <div class="mb-5">
                         <label for="email" class="text-sm">Email</label>
                         <br>
-                        <input type="email" name="email" value="{{ old('email') }}" required autofocus autocomplete="email" class="rounded-[30px] w-[250px] lg:w-[300px]">
+                        <input type="email" name="email" value="{{ old('email') }}" required autofocus autocomplete="email" placeholder="example@gmail.com" class="rounded-[30px] w-[250px] lg:w-[300px] placeholder:text-xs placeholder:text-[#C4C4C4]">
                     </div>
                     <div class="mb-5">
                         <label for="password" class="text-sm">Password</label>

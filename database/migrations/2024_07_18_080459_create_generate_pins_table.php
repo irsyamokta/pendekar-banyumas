@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('generate_pins', function (Blueprint $table) {
             $table->id()->primary();
             $table->string('pin');
+            $table->string('status')->default('active')->nullable();
             $table->timestamps();
         });
     }

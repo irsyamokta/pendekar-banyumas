@@ -17,6 +17,6 @@
     </div>
     {{-- Question --}}
     <div class="mt-4">
-        <textarea name="pertanyaan" id="" rows="3" class="w-full overflow-auto text-sm md:text-md dark:bg-transparent">{{ $data->pertanyaan }}</textarea>
+        <textarea name="pertanyaan" id="" rows="3" class="w-full overflow-auto text-sm md:text-md dark:bg-transparent"  placeholder="Tulis pertanyaan...">{{ $data->pertanyaan }}</textarea>
     </div>
 </div>
